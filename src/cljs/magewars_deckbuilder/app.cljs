@@ -1,5 +1,6 @@
 (ns magewars-deckbuilder.app
-  (:require [cljs.core.async :as async :refer [put! chan alts!]]
+  (:require-macros [cljs.core.async.macros :refer [go]])
+  (:require [cljs.core.async :as async :refer [put! chan <!]]
             [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [om-sync.core :refer [om-sync]]
@@ -19,34 +20,40 @@
       (update-in data [src :counts card-name] dec))))
 
 (defn add-card
-  [data card-name dest]
+  [card-name dest]
   (update-in data [dest :counts card-name] (fnil inc 0)))
 
 (defn move-card
-  [data card-name src dest]
+  [card-name src dest]
   (-> data
     (remove-card card-name src)
     (add-card card-name dest)))
 
 (defn move-card!
-  [data card-name src dest]
+  [card-name src dest]
   (om/transact! data #(move-card % card-name src dest)))
 
-(defn card-list [{:keys [app src dest]} owner]
-  (let [{:keys [title counts]} (src app)]
-    (reify
-      om/IRender
-      (render [_]
+(defn card-list-view [{:keys [app src dest]} owner]
+  (reify
+    om/IRender
+    (render [_]
+      (let [{:keys [title counts]} (src app)
+            {:keys [cards-by-name cindex cards selected-filters]} app
+            filtered-cards (f/filter-cards-indexed cards selected-filters cindex)]
         (dom/div nil
           (dom/h2 nil title)
           (apply
            dom/ul nil
            (map #(dom/li
-                     #js {:onClick
-                          (fn [e]
-                            (move-card! app (first %) src dest))}
+                     #js {:onClick (fn [e] (move-card! src dest))}
                      (str (first %) " " (second %)))
-                (sort-by first counts))))))))
+                (sort-by first
+                         (filter identity
+                                 (map (fn [[name count]]
+                                        (let [card (get cards-by-name name)]
+                                          (if (get filtered-cards card)
+                                            [name count])))
+                                      counts))))))))))
 
 ;; Filters
 (defprotocol FilterVal
@@ -69,42 +76,71 @@
            (f/filter-options cards)))
 
 
-(defn filter-val-view [val owner]
+(defn filter-val-view [{:keys [attr val count selected]} owner]
   (reify
-    om/IRender
-    (render [_]
-      (dom/li nil % (display val)))))
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter]}]
+      (dom/li
+          #js {:onClick (fn [e] (put! toggle-filter [attr val]))
+               :className (if selected "selected")}
+          (str (display val) " " count)))))
 
-(comment (defn filter-attribute-view [{:keys [attr-name vals facet-counts selected-filters]} owner]
-           (reify
-             om/IInitState
-             (init-state [_]
-               {:toggle-filter (chan)})
-             om/IWillMount
-             (will-mount [_]
-               (let [toggle-filter (om/get-state owner :toggle-filter)]
-                 (go (loop []
-                       (let [fav (<! toggle-filter)]
-                         (om/transact! selected-filters (fn [xs])))
-                       (recur)))))
-             om/IRenderState
-             (render-state [_ {:keys [toggle-filter]}]
-               (dom/div nil
-                 (dom/h3 nil (name attr-name))
-                 (apply dom/ul nil
-                        (om/build-all filter-val-view (sort-by str vals))))))))
-
-(defn filter-attribute-view [{:keys [attr-name vals facet-counts selected-filters]} owner]
+(defn filter-attribute-view [{:keys [attr vals facet-counts selected-filters]} owner]
   (reify
-    om/IRender
-    (render [_]
+    om/IInitState
+    (init-state [_]
+      {:start-time (atom nil)
+       :toggle-filter (chan)})
+    om/IWillMount
+    (will-mount [_]
+      (reset! (om/get-state owner :start-time) (.now js/Date))
+      (let [toggle-filter (om/get-state owner :toggle-filter)]
+        (go (loop []
+              (let [fav (<! toggle-filter)]
+                (om/transact! selected-filters
+                  (fn [xs]
+                    (let [f (if (get-in xs fav) disj conj)]
+                      (merge-with f xs (apply hash-map fav))))))
+              (recur)))))
+    om/IDidMount
+    (did-mount [_]
+      (println "Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
+    om/IWillUpdate
+    (will-update [_ _ _]
+      (reset! (om/get-state owner :start-time) (.now js/Date)))
+    om/IDidUpdate
+    (did-update [_ _ _]
+      (println "Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter]}]
       (dom/div nil
-        (dom/h3 nil (name attr-name))
+        (dom/h3 nil (name attr))
         (apply dom/ul nil
-               (om/build-all filter-val-view (sort-by str vals)))))))
+               (map #(om/build filter-val-view
+                               {:attr attr
+                                :val %
+                                :count (get-in facet-counts [attr %])
+                                :selected (get-in selected-filters [attr %])}
+                               {:init-state {:toggle-filter toggle-filter}})
+                    (sort-by str vals)))))))
 
-(defn filter-list [{:keys [selected-filters cards cindex]}]
+(defn filter-list [{:keys [selected-filters cards cindex]} owner]
   (reify
+    om/IInitState
+    (init-state [_] {:start-time (atom nil)})
+    om/IWillMount
+    (will-mount [_]
+      (reset! (om/get-state owner :start-time) (.now js/Date)))
+    om/IDidMount
+    (did-mount [_]
+      (println "FL Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
+    om/IWillUpdate
+    (will-update [_ _ _]
+      (reset! (om/get-state owner :start-time) (.now js/Date)))
+    om/IDidUpdate
+    (did-update [_ _ _]
+      (println "FL Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
+    
     om/IRender
     (render [_]
       (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
@@ -112,24 +148,24 @@
         (dom/div #js {:className "filters"}
                  (dom/h2 nil "Filters")
                  (apply dom/div nil
-                        (map (fn [[attr-name vals]]
+                        (map (fn [[attr vals]]
                                (om/build filter-attribute-view
-                                         {:attr-name attr-name
+                                         {:attr attr
                                           :vals vals
                                           :facet-counts facet-counts
                                           :selected-filters selected-filters}))
                              filter-attributes)))))))
 
 
-(defn app-view [app owner]
+(defn app-view [{:keys [deck pool] :as app} owner]
   (reify
     om/IRender
     (render [_]
       (dom/div nil
-        (om/build filter-list app)
+        (comment (om/build filter-list app))
         (dom/div #js {:className "cards"}
-                 (om/build card-list {:app app :src :deck :dest :pool})
-                 (om/build card-list {:app app :src :pool :dest :deck}))))))
+                 (om/build card-list-view {:app app :src deck :dest pool})
+                 (om/build card-list-view {:app app :src pool :dest deck}))))))
 
 
 (edn-xhr
@@ -141,6 +177,7 @@
            (fn [state cards]
              (let [cindex (f/card-index cards)]
                (merge state {:cards cards
+                             :cards-by-name (into {} (map (juxt :name identity) cards))
                              :cindex cindex
                              :deck {:title "Deck"
                                     :counts {}}
