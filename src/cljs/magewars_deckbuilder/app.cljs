@@ -74,11 +74,6 @@
   [attr]
   (= (attr f/attribute-filter-types) :vset))
 
-(defn facet-count
-  [facet-counts attr val]
-  (let [root (if (vset? attr) [(first val)] val)]
-    (get-in facet-counts [attr root])))
-
 (defn foptions
   [filter-attributes cards]
   (sort-by #(get filter-attributes (first %))
@@ -120,7 +115,7 @@
               {:attr attr
                :root root
                :val val
-               :count (facet-count facet-counts attr root)
+               :count (get-in facet-counts [attr root])
                :selected (get-in selected-filters [attr root])
                :children (prepare-vals attr leaves val facet-counts selected-filters)}))
           vals)
@@ -132,7 +127,7 @@
               {:attr attr
                :root root
                :val v
-               :count (facet-count facet-counts attr root)
+               :count (get-in facet-counts [attr root])
                :selected (get-in selected-filters [attr root])}))
           vals)
 
@@ -141,7 +136,7 @@
      (map (fn [v] {:attr attr
                   :root v
                   :val v
-                  :count (facet-count facet-counts attr v)
+                  :count (get-in facet-counts [attr v])
                   :selected (get-in selected-filters [attr v])})
           vals))))
 
@@ -153,7 +148,7 @@
       (dom/li #js {:onClick (fn [e] (put! toggle-filter [attr root]))
                    :className (if selected "selected")}
               (str (display val) " " count)
-              (if children (om/build val-list children))))))
+              (if children (om/build val-list children {:init-state {:toggle-filter toggle-filter}}))))))
 
 (defn val-list
   [vals owner]
