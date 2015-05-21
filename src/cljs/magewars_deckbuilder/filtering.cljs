@@ -25,6 +25,16 @@
    :school :keyword
    :level :number})
 
+(def filter-attributes-ordered
+  (into {}
+        (map-indexed #(vector %2 %1)
+                     [:type :subtypes :school :level
+                      :targets :secondary-targets :range
+                      :casting-cost :effects :traits
+                      :speed :armor :life :channeling :defenses
+                      :attack-dice :damage-types :ranged-melee :attack-speed
+                      :slots])))
+
 (def filter-type-attributes
   (mapval #(set (map first %)) (group-by second attribute-filter-types)))
 

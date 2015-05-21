@@ -48,11 +48,85 @@
                      (str (first %) " " (second %)))
                 (sort-by first counts))))))))
 
+;; Filters
+(defprotocol FilterVal
+  (display [x])
+  (sort-val [x]))
+
+(extend-protocol FilterVal
+  cljs.core.Keyword
+  (display [x] (name x))
+  (sort-val [x] x))
+
+(extend-type default
+  FilterVal
+  (display [x] (str x))
+  (sort-val [x] x))
+
+(defn foptions
+  [filter-attributes cards]
+  (sort-by #(get filter-attributes (first %))
+           (f/filter-options cards)))
+
+
+(defn filter-val-view [val owner]
+  (reify
+    om/IRender
+    (render [_]
+      (dom/li nil % (display val)))))
+
+(comment (defn filter-attribute-view [{:keys [attr-name vals facet-counts selected-filters]} owner]
+           (reify
+             om/IInitState
+             (init-state [_]
+               {:toggle-filter (chan)})
+             om/IWillMount
+             (will-mount [_]
+               (let [toggle-filter (om/get-state owner :toggle-filter)]
+                 (go (loop []
+                       (let [fav (<! toggle-filter)]
+                         (om/transact! selected-filters (fn [xs])))
+                       (recur)))))
+             om/IRenderState
+             (render-state [_ {:keys [toggle-filter]}]
+               (dom/div nil
+                 (dom/h3 nil (name attr-name))
+                 (apply dom/ul nil
+                        (om/build-all filter-val-view (sort-by str vals))))))))
+
+(defn filter-attribute-view [{:keys [attr-name vals facet-counts selected-filters]} owner]
+  (reify
+    om/IRender
+    (render [_]
+      (dom/div nil
+        (dom/h3 nil (name attr-name))
+        (apply dom/ul nil
+               (om/build-all filter-val-view (sort-by str vals)))))))
+
+(defn filter-list [{:keys [selected-filters cards cindex]}]
+  (reify
+    om/IRender
+    (render [_]
+      (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
+            filter-attributes (foptions f/filter-attributes-ordered cards)]
+        (dom/div #js {:className "filters"}
+                 (dom/h2 nil "Filters")
+                 (apply dom/div nil
+                        (map (fn [[attr-name vals]]
+                               (om/build filter-attribute-view
+                                         {:attr-name attr-name
+                                          :vals vals
+                                          :facet-counts facet-counts
+                                          :selected-filters selected-filters}))
+                             filter-attributes)))))))
+
+
 (defn app-view [app owner]
   (reify
     om/IRender
     (render [_]
       (dom/div nil
+        (om/build filter-list app)
         (dom/div #js {:className "cards"}
                  (om/build card-list {:app app :src :deck :dest :pool})
                  (om/build card-list {:app app :src :pool :dest :deck}))))))
