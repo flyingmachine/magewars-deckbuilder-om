@@ -3,6 +3,7 @@
             [om.dom :as dom :include-macros true]
             [om-sync.core :refer [om-sync]]
             [om-sync.util :refer [tx-tag edn-xhr]]
+            [cljs.core.async :as async :refer [chan]]
             [magewars-deckbuilder.filtering :as f]
             [magewars-deckbuilder.components.card-list :as cl]
             [magewars-deckbuilder.components.filter-selection :as fs]))
@@ -23,6 +24,13 @@
                  (om/build cl/card-list-view {:app app :src deck :dest pool})
                  (om/build cl/card-list-view {:app app :src pool :dest deck}))))))
 
+(defn all-cards-view [{:keys [deck pool] :as app} owner]
+  (reify
+    om/IRender
+    (render [_]
+      (dom/div nil
+        (om/build cl/card-list-view {:app app :src deck :dest pool})
+        (om/build cl/card-list-view {:app app :src pool :dest deck})))))
 
 (edn-xhr
  {:method :get
@@ -40,5 +48,9 @@
                              :pool {:title "Pool"
                                     :counts (into {} (map (juxt :name :count) cards))}})))
            cards)
-    (om/root app-view app-state
-             {:target (.getElementById js/document "app")}))})
+
+    (om/root fs/filter-list app-state
+             {:target (.getElementById js/document "filters")
+              :shared {:toggle-filter (chan)}})
+    (om/root all-cards-view app-state
+               {:target (.getElementById js/document "cards")}))})

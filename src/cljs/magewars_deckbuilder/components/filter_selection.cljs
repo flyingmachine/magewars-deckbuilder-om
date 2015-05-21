@@ -73,43 +73,40 @@
 (defn val-li
   [{:keys [attr root val count selected children]} owner]
   (reify
-    om/IRenderState
-    (render-state [_ {:keys [toggle-filter] :as state}]
-      (dom/li #js {:onClick (fn [e] (put! toggle-filter [attr root]))}
+    om/IRender
+    (render [_]
+      (dom/li #js {:onClick (fn [e] (put! (om/get-shared owner :toggle-filter)
+                                         [attr root]))}
               (dom/label #js {:className (if selected "selected")}
                          (str (display val) " " count))
-              (if children (om/build val-list children {:init-state {:toggle-filter toggle-filter}}))))))
+              (if children (om/build val-list children))))))
 
 (defn val-list
   [vals owner]
   (reify
-    om/IRenderState
-    (render-state [_ {:keys [toggle-filter] :as state}]
+    om/IRender
+    (render [_]
       (apply dom/ul nil
-             (map (fn [val] (om/build val-li val {:init-state {:toggle-filter toggle-filter}}))
+             (map (fn [val] (om/build val-li val))
                   vals)))))
 
 (defn filter-attribute-view [{:keys [attr vals facet-counts selected-filters]} owner]
   (reify
-    om/IInitState
-    (init-state [_] {:toggle-filter (chan)})
     om/IWillMount
     (will-mount [_]
-      (let [toggle-filter (om/get-state owner :toggle-filter)]
-        (go (loop []
-              (let [fav (<! toggle-filter)]
-                (om/transact! selected-filters
-                  (fn [xs]
-                    (let [f (if (get-in xs fav) disj conj)]
-                      (merge-with f xs (apply hash-map fav))))))
-              (recur)))))
-    om/IRenderState
-    (render-state [_ {:keys [toggle-filter]}]
+      (go (loop []
+            (let [fav (<! (om/get-shared owner :toggle-filter))]
+              (om/transact! selected-filters
+                (fn [xs]
+                  (let [f (if (get-in xs fav) disj conj)]
+                    (merge-with f xs (apply hash-map fav))))))
+            (recur))))
+    om/IRender
+    (render [_]
       (let [prepped-vals (prepare-vals attr vals nil facet-counts selected-filters)]
         (dom/div nil
           (dom/h3 nil (name attr))
-          (om/build val-list prepped-vals
-                    {:init-state {:toggle-filter toggle-filter}}))))))
+          (om/build val-list prepped-vals))))))
 
 (defn filter-list [{:keys [selected-filters cards cindex]} owner]
   (reify
@@ -132,13 +129,13 @@
     (render [_]
       (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
             filter-attributes (foptions f/filter-attributes-ordered cards)]
-        (dom/div #js {:className "filters"}
-                 (dom/h2 nil "Filters")
-                 (apply dom/div nil
-                        (map (fn [[attr vals]]
-                               (om/build filter-attribute-view
-                                         {:attr attr
-                                          :vals vals
-                                          :facet-counts facet-counts
-                                          :selected-filters selected-filters}))
-                             filter-attributes)))))))
+        (dom/div
+          (dom/h2 nil "Filters")
+          (apply dom/div nil
+                 (map (fn [[attr vals]]
+                        (om/build filter-attribute-view
+                                  {:attr attr
+                                   :vals vals
+                                   :facet-counts facet-counts
+                                   :selected-filters selected-filters}))
+                      filter-attributes)))))))
