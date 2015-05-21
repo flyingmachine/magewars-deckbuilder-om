@@ -1,73 +1,144 @@
 (ns magewars-deckbuilder.components.filter-selection
-  (:require [magewars-deckbuilder.filtering
-             :as f :refer [filter-options card-index filter-facet-counts
-                           attribute-filter-types empty-filters]]))
+  (:require-macros [cljs.core.async.macros :refer [go]])
+  (:require [cljs.core.async :as async :refer [put! chan <!]]
+            [magewars-deckbuilder.filtering :as f]
+            [om.core :as om :include-macros true]
+            [om.dom :as dom :include-macros true]))
 
-(def filter-attributes-ordered
-  (reduce #(assoc % (second %2) (first %2))
-          {}
-          (map-indexed vector
-                       [:type :subtypes :school :level
-                        :targets :secondary-targets :range
-                        :casting-cost :effects :traits
-                        :speed :armor :life :channeling :defenses
-                        :attack-dice :damage-types :ranged-melee :attack-speed
-                        :slots])))
+(defprotocol FilterVal
+  (display [x])
+  (sort-val [x]))
 
-(defn ->str
-  [x]
-  (str (if (keyword? x) (name x) x)))
+(extend-protocol FilterVal
+  cljs.core.Keyword
+  (display [x] (name x))
+  (sort-val [x] x)
 
-(defn toggle-filter!
-  [selected-filters attr val]
-  (let [f (if (get-in @selected-filters [attr val]) disj conj)]
-    (swap! selected-filters #(merge-with f % {attr val}))))
+  cljs.core/PersistentVector
+  (display [x] (display (first x)))
+  (sort-val [x] (sort-val (first x))))
+
+(extend-type default
+  FilterVal
+  (display [x] (str x))
+  (sort-val [x] x))
 
 (defn vset?
   [attr]
-  (= (attr attribute-filter-types) :vset))
-
-(defn filter-display
-  [facet-count display]
-  [:span (str display " " facet-count)])
-
-(defn filter-li
-  [selected-filters facet-counts attr val display]
-  ^{:key (str attr val)}
-  [:li
-   [:label
-    {:on-click #(toggle-filter! selected-filters attr val)
-     :class (if ((or (attr @selected-filters) #{}) val) "selected")}
-    [filter-display (get-in facet-counts [attr val]) (->str display)]]])
-
-(defn filter-val
-  [selected-filters facet-counts attr val]
-  (if (vset? attr)
-    (let [[root leaves] val
-          root-li (filter-li selected-filters facet-counts attr [root] root)]
-      (if (empty? leaves)
-        root-li
-        (conj root-li [:ul (doall (map #(filter-li selected-filters facet-counts attr [root %] %) (sort-by ->str leaves)))])))
-    (filter-li selected-filters facet-counts attr val val)))
+  (= (attr f/attribute-filter-types) :vset))
 
 (defn foptions
   [filter-attributes cards]
   (sort-by #(get filter-attributes (first %))
-           (filter-options cards)))
+           (f/filter-options cards)))
 
-(defn filter-attribute
-  [selected-filters facet-counts attr vals]
-  ^{:key (str "filter-attribute-" attr)}
-  [:div
-   [:h3 (name attr)]
-   [:ul (doall (map (partial filter-val selected-filters facet-counts attr)
-                    (sort-by ->str vals)))]])
+(defn prepare-vals
+  [attr vals vset-parent facet-counts selected-filters]
+  (sort-by
+   (comp str :val)
+   (cond
+     ;; vset roots
+     (and (vset? attr) (not vset-parent))
+     (map (fn [v]
+            (let [[val leaves] v
+                  root [val]]
+              {:attr attr
+               :root root
+               :val val
+               :count (get-in facet-counts [attr root])
+               :selected (get-in selected-filters [attr root])
+               :children (prepare-vals attr leaves val facet-counts selected-filters)}))
+          vals)
 
-(defn filter-list
-  [cards cindex selected-filters]
-  (let [facet-counts (f/filter-facet-counts cards cindex @selected-filters)]
-    [:div {:class "filters"}
-     [:h2 "Filters"]
-     [:div (doall (map (fn [[attr vals]]
-                         (filter-attribute selected-filters facet-counts attr vals))
-                       (foptions filter-attributes-ordered cards)))]]))
+     ;; vset leaves
+     vset-parent
+     (map (fn [v]
+            (let [root [vset-parent v]]
+              {:attr attr
+               :root root
+               :val v
+               :count (get-in facet-counts [attr root])
+               :selected (get-in selected-filters [attr root])}))
+          vals)
+
+     ;; non-vset
+     :else
+     (map (fn [v] {:attr attr
+                  :root v
+                  :val v
+                  :count (get-in facet-counts [attr v])
+                  :selected (get-in selected-filters [attr v])})
+          vals))))
+
+(defn val-li
+  [{:keys [attr root val count selected children]} owner]
+  (reify
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter] :as state}]
+      (dom/li #js {:onClick (fn [e] (put! toggle-filter [attr root]))}
+              (dom/label #js {:className (if selected "selected")}
+                         (str (display val) " " count))
+              (if children (om/build val-list children {:init-state {:toggle-filter toggle-filter}}))))))
+
+(defn val-list
+  [vals owner]
+  (reify
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter] :as state}]
+      (apply dom/ul nil
+             (map (fn [val] (om/build val-li val {:init-state {:toggle-filter toggle-filter}}))
+                  vals)))))
+
+(defn filter-attribute-view [{:keys [attr vals facet-counts selected-filters]} owner]
+  (reify
+    om/IInitState
+    (init-state [_] {:toggle-filter (chan)})
+    om/IWillMount
+    (will-mount [_]
+      (let [toggle-filter (om/get-state owner :toggle-filter)]
+        (go (loop []
+              (let [fav (<! toggle-filter)]
+                (om/transact! selected-filters
+                  (fn [xs]
+                    (let [f (if (get-in xs fav) disj conj)]
+                      (merge-with f xs (apply hash-map fav))))))
+              (recur)))))
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter]}]
+      (let [prepped-vals (prepare-vals attr vals nil facet-counts selected-filters)]
+        (dom/div nil
+          (dom/h3 nil (name attr))
+          (om/build val-list prepped-vals
+                    {:init-state {:toggle-filter toggle-filter}}))))))
+
+(defn filter-list [{:keys [selected-filters cards cindex]} owner]
+  (reify
+    om/IInitState
+    (init-state [_] {:start-time (atom nil)})
+    om/IWillMount
+    (will-mount [_]
+      (reset! (om/get-state owner :start-time) (.now js/Date)))
+    om/IDidMount
+    (did-mount [_]
+      (println "FL Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
+    om/IWillUpdate
+    (will-update [_ _ _]
+      (reset! (om/get-state owner :start-time) (.now js/Date)))
+    om/IDidUpdate
+    (did-update [_ _ _]
+      (println "FL Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
+    
+    om/IRender
+    (render [_]
+      (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
+            filter-attributes (foptions f/filter-attributes-ordered cards)]
+        (dom/div #js {:className "filters"}
+                 (dom/h2 nil "Filters")
+                 (apply dom/div nil
+                        (map (fn [[attr vals]]
+                               (om/build filter-attribute-view
+                                         {:attr attr
+                                          :vals vals
+                                          :facet-counts facet-counts
+                                          :selected-filters selected-filters}))
+                             filter-attributes)))))))
