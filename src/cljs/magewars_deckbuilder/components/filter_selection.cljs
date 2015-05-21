@@ -129,7 +129,7 @@
     (render [_]
       (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
             filter-attributes (foptions f/filter-attributes-ordered cards)]
-        (dom/div
+        (dom/div nil
           (dom/h2 nil "Filters")
           (apply dom/div nil
                  (map (fn [[attr vals]]
