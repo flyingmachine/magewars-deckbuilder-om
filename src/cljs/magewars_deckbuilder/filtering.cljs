@@ -110,7 +110,7 @@
 
   e.g. '(type is attack or conjuration) AND (subtype is acid)"
   [cards filters index]
-  (if (empty? filters)
+  (if (every? #(empty? (second %)) filters)
     cards
     (apply s/intersection
            cards
