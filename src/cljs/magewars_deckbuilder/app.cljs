@@ -6,6 +6,7 @@
             [om-sync.core :refer [om-sync]]
             [om-sync.util :refer [tx-tag edn-xhr]]
             [magewars-deckbuilder.filtering :as f]))
+(declare val-list)
 
 (enable-console-print!)
 
@@ -27,15 +28,6 @@
   [card-name src dest]
   (om/transact! src #(remove-card card-name %))
   (om/transact! dest #(add-card card-name %)))
-
-(defn filter-card-list
-  [cards-by-name filtered-cards counts]
-  (filter identity
-          (map (fn [[name count]]
-                 (let [card (get cards-by-name name)]
-                   (if (get filtered-cards card)
-                     [name count])))
-               counts)))
 
 (defn card-list-view [{:keys [app src dest]} owner]
   (reify
@@ -67,37 +59,117 @@
 (extend-protocol FilterVal
   cljs.core.Keyword
   (display [x] (name x))
-  (sort-val [x] x))
+  (sort-val [x] x)
+
+  cljs.core/PersistentVector
+  (display [x] (display (first x)))
+  (sort-val [x] (sort-val (first x))))
 
 (extend-type default
   FilterVal
   (display [x] (str x))
   (sort-val [x] x))
 
+(defn vset?
+  [attr]
+  (= (attr f/attribute-filter-types) :vset))
+
+(defn facet-count
+  [facet-counts attr val]
+  (let [root (if (vset? attr) [(first val)] val)]
+    (get-in facet-counts [attr root])))
+
 (defn foptions
   [filter-attributes cards]
   (sort-by #(get filter-attributes (first %))
            (f/filter-options cards)))
 
-
 (defn filter-val-view [{:keys [attr val count selected]} owner]
   (reify
     om/IRenderState
     (render-state [_ {:keys [toggle-filter]}]
-      (dom/li
-          #js {:onClick (fn [e] (put! toggle-filter [attr val]))
-               :className (if selected "selected")}
-          (str (display val) " " count)))))
+      (let [is-vset (and (vset? attr) (coll? val) (set? (second val)))
+            val-root (if is-vset [(first val)] val)
+            leaves (if is-vset (second val))]
+        (apply dom/li
+               #js {:onClick (fn [e] (put! toggle-filter [attr val-root]))
+                    :className (if selected "selected")}
+               (str (display val) " " count)
+               (if (and is-vset (not (empty? leaves)))
+                 [(apply dom/ul nil
+                         (map #(om/build
+                                filter-val-view
+                                {:attr attr
+                                 :val %
+                                 :count 0
+                                 :selected false})
+                              leaves))]
+                 []))))))
+
+
+(defn prepare-vals
+  [attr vals vset-parent facet-counts selected-filters]
+  (sort-by
+   (comp str :val)
+   (cond
+     ;; vset roots
+     (and (vset? attr) (not vset-parent))
+     (map (fn [v]
+            (let [[val leaves] v
+                  root [val]]
+              {:attr attr
+               :root root
+               :val val
+               :count (facet-count facet-counts attr root)
+               :selected (get-in selected-filters [attr root])
+               :children (prepare-vals attr leaves val facet-counts selected-filters)}))
+          vals)
+
+     ;; vset leaves
+     vset-parent
+     (map (fn [v]
+            (let [root [vset-parent v]]
+              {:attr attr
+               :root root
+               :val v
+               :count (facet-count facet-counts attr root)
+               :selected (get-in selected-filters [attr root])}))
+          vals)
+
+     ;; non-vset
+     :else
+     (map (fn [v] {:attr attr
+                  :root v
+                  :val v
+                  :count (facet-count facet-counts attr v)
+                  :selected (get-in selected-filters [attr v])})
+          vals))))
+
+(defn val-li
+  [{:keys [attr root val count selected children]} owner]
+  (reify
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter] :as state}]
+      (dom/li #js {:onClick (fn [e] (put! toggle-filter [attr root]))
+                   :className (if selected "selected")}
+              (str (display val) " " count)
+              (if children (om/build val-list children))))))
+
+(defn val-list
+  [vals owner]
+  (reify
+    om/IRenderState
+    (render-state [_ {:keys [toggle-filter] :as state}]
+      (apply dom/ul nil
+             (map (fn [val] (om/build val-li val {:init-state {:toggle-filter toggle-filter}}))
+                  vals)))))
 
 (defn filter-attribute-view [{:keys [attr vals facet-counts selected-filters]} owner]
   (reify
     om/IInitState
-    (init-state [_]
-      {:start-time (atom nil)
-       :toggle-filter (chan)})
+    (init-state [_] {:toggle-filter (chan)})
     om/IWillMount
     (will-mount [_]
-      (reset! (om/get-state owner :start-time) (.now js/Date))
       (let [toggle-filter (om/get-state owner :toggle-filter)]
         (go (loop []
               (let [fav (<! toggle-filter)]
@@ -106,27 +178,13 @@
                     (let [f (if (get-in xs fav) disj conj)]
                       (merge-with f xs (apply hash-map fav))))))
               (recur)))))
-    om/IDidMount
-    (did-mount [_]
-      (println "Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
-    om/IWillUpdate
-    (will-update [_ _ _]
-      (reset! (om/get-state owner :start-time) (.now js/Date)))
-    om/IDidUpdate
-    (did-update [_ _ _]
-      (println "Render time:" (- (.now js/Date) @(om/get-state owner :start-time))))
     om/IRenderState
     (render-state [_ {:keys [toggle-filter]}]
-      (dom/div nil
-        (dom/h3 nil (name attr))
-        (apply dom/ul nil
-               (map #(om/build filter-val-view
-                               {:attr attr
-                                :val %
-                                :count (get-in facet-counts [attr %])
-                                :selected (get-in selected-filters [attr %])}
-                               {:init-state {:toggle-filter toggle-filter}})
-                    (sort-by str vals)))))))
+      (let [prepped-vals (prepare-vals attr vals nil facet-counts selected-filters)]
+        (dom/div nil
+          (dom/h3 nil (name attr))
+          (om/build val-list prepped-vals
+                    {:init-state {:toggle-filter toggle-filter}}))))))
 
 (defn filter-list [{:keys [selected-filters cards cindex]} owner]
   (reify

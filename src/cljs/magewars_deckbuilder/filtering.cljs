@@ -113,7 +113,6 @@
   (if (every? #(empty? (second %)) filters)
     cards
     (apply s/intersection
-           cards
            (map (fn [[attr fvals]]
                   (apply s/union (map #(get index [attr %]) fvals)))
                 (only-non-empty filters)))))
