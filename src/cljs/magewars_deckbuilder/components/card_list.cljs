@@ -30,13 +30,16 @@
           (dom/h3 nil title)
           (apply
            dom/ul nil
-           (map #(dom/li
-                     nil
-                     (dom/label
-                      nil
-                      (dom/i #js {:className "fa fa-exchange"
-                                  :onClick (fn [e] (move-card! (first %) src dest))})
-                      (str (second %) " " (first %))))
+           (map (fn [[name count]]
+                  dom/li
+                  nil
+                  (dom/label
+                   #js {:onClick (fn [e] (om/transact! app :selected-card (constantly name)))}
+                   (dom/i #js {:className "fa fa-exchange"
+                               :onClick (fn [e]
+                                          (.stopPropagation e)
+                                          (move-card! name src dest))})
+                   (str count " " name)))
                 (sort-by first
                          (filter identity
                                  (map (fn [[name count]]
