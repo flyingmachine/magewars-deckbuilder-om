@@ -1,7 +1,38 @@
+$hover: #fefee2;
+$selected: #fddeb0;
+
+body {
+  font-family: $font-sans;
+}
+
 label:hover {
-  background: #fdfdb0;
+  background: $hover;
+  cursor: pointer;
 }
 
 .selected {
-  background: #fdfdb0;
+  background: $selected;
+}
+
+.selected:hover {
+  background: #fdedb0;
+}
+
+.filters {
+  border-right: 2px solid #444;
+}
+
+.cards {
+  border-bottom: 2px solid #444;
+  li:hover {
+    background: $hover;
+  }
+}
+
+h3 {
+  background: #f69da4;
+}
+
+h4 {
+  background: #fbbba0;
 }

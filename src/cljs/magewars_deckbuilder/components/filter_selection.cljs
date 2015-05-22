@@ -107,7 +107,7 @@
     (render [_]
       (let [prepped-vals (prepare-vals attr vals nil facet-counts selected-filters)]
         (dom/div nil
-          (dom/h3 nil (name attr))
+          (dom/h4 nil (name attr))
           (om/build val-list prepped-vals))))))
 
 (defn filter-list [{:keys [selected-filters cards cindex]} owner]
@@ -132,7 +132,7 @@
       (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
             filter-attributes (foptions f/filter-attributes-ordered cards)]
         (dom/div nil
-          (dom/h2 nil "Filters")
+          (dom/h3 nil "Filters")
           (apply dom/div nil
                  (map (fn [[attr vals]]
                         (om/build filter-attribute-view

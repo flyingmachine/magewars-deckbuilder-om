@@ -26,13 +26,17 @@
       (let [{:keys [title counts]} src
             {:keys [cards-by-name cindex cards selected-filters]} app
             filtered-cards (f/filter-cards-indexed cards selected-filters cindex)]
-        (dom/div nil
-          (dom/h2 nil title)
+        (dom/div #js {:className "card-list"}
+          (dom/h3 nil title)
           (apply
            dom/ul nil
            (map #(dom/li
-                     #js {:onClick (fn [e] (move-card! (first %) src dest))}
-                     (str (first %) " " (second %)))
+                     nil
+                     (dom/label
+                      nil
+                      (dom/i #js {:className "fa fa-exchange"
+                                  :onClick (fn [e] (move-card! (first %) src dest))})
+                      (str (second %) " " (first %))))
                 (sort-by first
                          (filter identity
                                  (map (fn [[name count]]
