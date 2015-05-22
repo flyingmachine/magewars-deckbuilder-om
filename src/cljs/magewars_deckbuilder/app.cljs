@@ -7,7 +7,6 @@
             [magewars-deckbuilder.filtering :as f]
             [magewars-deckbuilder.components.card-list :as cl]
             [magewars-deckbuilder.components.filter-selection :as fs]))
-(declare val-list)
 
 (enable-console-print!)
 
@@ -53,4 +52,4 @@
              {:target (.getElementById js/document "filters")
               :shared {:toggle-filter (chan)}})
     (om/root all-cards-view app-state
-               {:target (.getElementById js/document "cards")}))})
+             {:target (.getElementById js/document "cards")}))})
