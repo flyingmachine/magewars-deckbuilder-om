@@ -13,24 +13,6 @@
 (def app-state
   (atom {:selected-filters (f/empty-filters f/attribute-filter-types)}))
 
-(defn app-view [{:keys [deck pool] :as app} owner]
-  (reify
-    om/IRender
-    (render [_]
-      (dom/div nil
-        (om/build fs/filter-list app)
-        (dom/div #js {:className "cards"}
-                 (om/build cl/card-list-view {:app app :src deck :dest pool})
-                 (om/build cl/card-list-view {:app app :src pool :dest deck}))))))
-
-(defn all-cards-view [{:keys [deck pool] :as app} owner]
-  (reify
-    om/IRender
-    (render [_]
-      (dom/div nil
-        (om/build cl/card-list-view {:app app :src deck :dest pool})
-        (om/build cl/card-list-view {:app app :src pool :dest deck})))))
-
 (edn-xhr
  {:method :get
   :url "/cards"
@@ -51,5 +33,5 @@
     (om/root fs/filter-list app-state
              {:target (.getElementById js/document "filters")
               :shared {:toggle-filter (chan)}})
-    (om/root all-cards-view app-state
+    (om/root cl/all-cards-view app-state
              {:target (.getElementById js/document "cards")}))})

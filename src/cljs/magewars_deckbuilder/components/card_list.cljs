@@ -44,3 +44,11 @@
                                           (if (get filtered-cards card)
                                             [name count])))
                                       counts))))))))))
+
+(defn all-cards-view [{:keys [deck pool] :as app} owner]
+  (reify
+    om/IRender
+    (render [_]
+      (dom/div nil
+        (om/build card-list-view {:app app :src deck :dest pool})
+        (om/build card-list-view {:app app :src pool :dest deck})))))
