@@ -64,13 +64,13 @@ h3, .h3 {
   @media (min-width: 56.25em) {
     margin-bottom: 0;
     padding-left: emRhythm(1, $ms-up2);
-    @include setType(7, $ms-up2);
+    @include setType(8, $ms-up2);
   }
 }
 
 h4, .h4 {
   margin-bottom: 0;
-  @include setType(6, $ms-up1);
+  @include setType(8, $ms-up1);
   padding-left: emRhythm(1, $ms-up1);
 }
 
