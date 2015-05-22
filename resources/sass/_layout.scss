@@ -1,0 +1,35 @@
+.container {
+  @include container;
+}
+
+ul {
+  margin-bottom: 0;
+  margin-left: 0;
+  ul {
+    margin-left: 1.5em;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+
+.filters {
+  @include span(3 of 12);
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+
+  label {
+    display: block;
+  }
+}
+
+.cards {
+  position: fixed;
+  left: span(3);
+  right: 0;
+  top: 0;
+  bottom: 50%;
+}

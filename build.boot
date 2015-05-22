@@ -23,7 +23,8 @@
                  [org.omcljs/om "0.8.8"]
                  [om-sync "0.1.1"]
                  [cljs-ajax "0.3.11"]
-                 [cljsjs/react-with-addons "0.13.1-0"]])
+                 [cljsjs/react-with-addons "0.13.1-0"]
+                 [boot-sassc "0.1.2"]])
 
 (require
  '[adzerk.boot-cljs      :refer [cljs]]
@@ -32,7 +33,8 @@
  '[cljsjs.boot-cljsjs    :refer [from-cljsjs]]
  '[reloaded.repl         :refer [init start stop go reset]]
  '[magewars-deckbuilder.systems :refer [dev-system]]
- '[system.boot :refer    [system]])
+ '[mathias.boot-sassc    :refer [sass]]
+ '[system.boot           :refer [system]])
 
 (deftask environ [e env FOO=BAR {kw edn} "The environment map"]
   (with-pre-wrap fileset
@@ -44,6 +46,7 @@
   []
   (comp (environ :env {:http-port 3000})
         (watch :verbose true)
+        (sass :sass-file "main.scss" :output-dir "stylesheets")
         (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
         (reload)
         (from-cljsjs)
