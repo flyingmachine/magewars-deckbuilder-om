@@ -2,3 +2,4 @@ target
 .nrepl*
 .lein-env
 bower_components
+.DS_Store
