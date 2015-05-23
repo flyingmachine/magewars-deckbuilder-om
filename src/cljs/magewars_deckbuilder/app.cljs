@@ -6,7 +6,8 @@
             [cljs.core.async :as async :refer [chan]]
             [magewars-deckbuilder.filtering :as f]
             [magewars-deckbuilder.components.card-list :as cl]
-            [magewars-deckbuilder.components.filter-selection :as fs]))
+            [magewars-deckbuilder.components.filter-selection :as fs]
+            [magewars-deckbuilder.components.selected-card :as sc]))
 
 (enable-console-print!)
 
@@ -18,40 +19,6 @@
   (dom/tr nil
     (dom/td nil x)
     (dom/td nil y)))
-
-(defn display-many
-  [x]
-  (->> x
-       sort
-       (map name)
-       (clojure.string/join ", ")))
-
-(defn card-details
-  [c]
-  (dom/table nil
-    (row "Type" (name (:type c)))
-    (row "Subtypes" (display-many (:subtypes c)))
-    (row "School" (name (first (:school c))))
-    (row "Level" (second (:school c)))
-    (row "Casting Cost" (:casting-cost c))
-    (row "Speed" (name (:speed c)))
-    (row "Targets" (display-many (:targets c)))))
-
-(defn selected-card-view [{:keys [selected-card cards-by-name]} owner]
-  (reify
-    om/IRender
-    (render [_]
-      (if-let [card (get cards-by-name selected-card)]
-        (dom/div nil
-          (dom/h3 nil (:name card))
-          (dom/img #js {:src (str "images/" (get-in card [:display :image]))})
-          (dom/div #js {:className "card-details"}
-                   (card-details (:display card))))
-        (dom/div nil)))))
-
-
-
-
 
 (edn-xhr
  {:method :get
@@ -75,5 +42,5 @@
               :shared {:toggle-filter (chan)}})
     (om/root cl/all-cards-view app-state
              {:target (.getElementById js/document "cards")})
-    (om/root selected-card-view app-state
+    (om/root sc/selected-card-view app-state
              {:target (.getElementById js/document "selected-card")}))})
