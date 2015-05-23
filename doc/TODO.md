@@ -1,2 +1,3 @@
 * proper string / sorting
-* sass building
+* reset filters
+* no performance hit on reload?

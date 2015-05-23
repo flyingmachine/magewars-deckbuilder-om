@@ -7,7 +7,8 @@
    :school [:arcane 3]
    :effects #{:banish}
    :traits #{}
-   :description "Teleport target creature out of the arena. Place 3 Banish tokens on it. Remove 1 Banish token each Upkeep Phase. When the final token is removed, return the creature to the last zone it was in. While out of the arena, this creature cannot take any action, its action marker remains unchanged, and it can only be affected by attached spells, conditions, or its own traits and abilities."}
+   :description "Teleport target creature out of the arena. Place 3 Banish tokens on it. Remove 1 Banish token each Upkeep Phase. When the final token is removed, return the creature to the last zone it was in. While out of the arena, this creature cannot take any action, its action marker remains unchanged, and it can only be affected by attached spells, conditions, or its own traits and abilities."
+   :image "MW1I01.jpg"}
   {:name "Battle Fury"
    :subtypes #{:command}
    :casting-cost 5
@@ -17,7 +18,8 @@
    :school [:war 1]
    :effects #{[:melee :buff]}
    :traits #{}
-   :description "The next time this round the target creature makes a melee attack, after that attack action it may immediately make another quick action melee attack"}
+   :description "The next time this round the target creature makes a melee attack, after that attack action it may immediately make another quick action melee attack"
+   :image "MW1I02.jpg"}
   {:name "Call of the Wild"
    :subtypes #{}
    :casting-cost 4
@@ -28,7 +30,8 @@
    :school [:nature 1]
    :effects #{[:melee :buff]}
    :traits #{}
-   :description "All friendly animal creatures in the arena gain the Melee +1 trait until the end of the round."}
+   :description "All friendly animal creatures in the arena gain the Melee +1 trait until the end of the round."
+   :image "MW1I03.jpg"}
   {:name "Charge"
    :subtypes #{:command}
    :casting-cost 4
@@ -38,7 +41,8 @@
    :school [:war 1]
    :effects #{:fast :charge}
    :traits #{}
-   :description "Target gains the Fast and Charge +1 traits until the end of the round."}
+   :description "Target gains the Fast and Charge +1 traits until the end of the round."
+   :image "MW1I04.jpg"}
   {:name "Dispel"
    :subtypes #{:metamagic}
    :casting-cost -1
@@ -48,7 +52,8 @@
    :school [:arcane 1]
    :effects #{:destroy}
    :traits #{}
-   :description "Destroy the target. X = total mana cost of target enchantment (casting plus reveal cost)."}
+   :description "Destroy the target. X = total mana cost of target enchantment (casting plus reveal cost)."
+   :image "MW1I06.jpg"}
   {:name "Dissolve"
    :subtypes #{:acid}
    :casting-cost -1
@@ -59,7 +64,8 @@
    :school [:water 1]
    :effects #{:destroy}
    :traits #{}
-   :description "When you cast Dissolve, choose an equipment object attached to target Mage. X = equipment's casting cost. Then, destroy the chosen equipment."}
+   :description "When you cast Dissolve, choose an equipment object attached to target Mage. X = equipment's casting cost. Then, destroy the chosen equipment."
+   :image "MW1I07.jpg"}
   {:name "Drain Life"
    :subtypes #{:vampiric}
    :casting-cost 12
@@ -69,7 +75,8 @@
    :school [:dark 3]
    :effects #{:heal :direct-damage :drain}
    :traits #{:magecast :dark-mage-only}
-   :description "The target receives 5 attack dice of direct damage. The caster also heals damage equal to the damage received by the target creature."}
+   :description "The target receives 5 attack dice of direct damage. The caster also heals damage equal to the damage received by the target creature."
+   :image "MW1I08.jpg"}
   {:name "Drain Power"
    :subtypes #{:mana}
    :casting-cost 16
@@ -79,7 +86,8 @@
    :school [:arcane 3]
    :effects #{:mana-drain}
    :traits #{:magecast}
-   :description "Roll 8 attack dice. The target loses that much mana from his mana supply. The caster gains mana equal to the mana lost."}
+   :description "Roll 8 attack dice. The target loses that much mana from his mana supply. The caster gains mana equal to the mana lost."
+   :image "MW1I09.jpg"}
   {:name "Evade"
    :subtypes #{:command}
    :casting-cost 3
@@ -89,7 +97,8 @@
    :school [:war 1]
    :effects #{:elusive}
    :traits #{}
-   :description "Target gains the Elusive trait until the end of the round."}
+   :description "Target gains the Elusive trait until the end of the round."
+   :image "MW1I10.jpg"}
   {:name "Explode"
    :subtypes #{:flame}
    :casting-cost -1
@@ -103,7 +112,8 @@
                :damage-type :flame
                :effects #{[:burn 6 12]}
                :traits #{:unavoidable :defrost}}}
-   :description "When you cast Explode, choose an equipment object attached to the target Mage. **X = 6 +** the equipment's casting cost. Destroy the chosen equipment. Then, Expode makes the above *flame* attack against the target Mage."}
+   :description "When you cast Explode, choose an equipment object attached to the target Mage. **X = 6 +** the equipment's casting cost. Destroy the chosen equipment. Then, Expode makes the above *flame* attack against the target Mage."
+   :image "MW1I11.jpg"}
   {:name "Force Push"
    :subtypes #{:force}
    :casting-cost 3
@@ -113,7 +123,8 @@
    :school [:mind 1]
    :effects #{:push :move}
    :traits #{}
-   :description "Target creature is Pushed 1 zone in the direction of your choice. This will **not** Push it through a wall with the Passage Attacks trait, **unless** you pay an additional 3 mana when this spell is cast."}
+   :description "Target creature is Pushed 1 zone in the direction of your choice. This will **not** Push it through a wall with the Passage Attacks trait, **unless** you pay an additional 3 mana when this spell is cast."
+   :image "MW1I12.jpg"}
   {:name "Group Heal"
    :subtypes #{:healing}
    :casting-cost 9
@@ -124,7 +135,8 @@
    :school [:holy 2]
    :effects #{:heal}
    :traits #{}
-   :description "Heal each friendly Living creature in the target zone the amount rolled on 5 attack dice. Roll separately for each creature."}
+   :description "Heal each friendly Living creature in the target zone the amount rolled on 5 attack dice. Roll separately for each creature."
+   :image "MW1I13.jpg"}
   {:name "Heal"
    :subtypes #{:healing}
    :casting-cost 9
@@ -134,7 +146,8 @@
    :school [:holy 2]
    :effects #{:heal}
    :traits #{}
-   :description "Heal target creature the amount rolled on 8 attack dice."}
+   :description "Heal target creature the amount rolled on 8 attack dice."
+   :image "MW1I14.jpg"}
   {:name "Knockdown"
    :subtypes #{:force}
    :casting-cost 3
@@ -144,7 +157,8 @@
    :school [:mind 1]
    :effects #{:incapacitated}
    :traits #{}
-   :description "Target is **incapacitated** until the beginning of its next Action Phase, or until the end of the round, whichever comes first. Knowckdown has no effect on Unmovable creatures."}
+   :description "Target is **incapacitated** until the beginning of its next Action Phase, or until the end of the round, whichever comes first. Knowckdown has no effect on Unmovable creatures."
+   :image "MW1I15.jpg"}
   {:name "Lay Hands"
    :subtypes #{:healing}
    :casting-cost 9
@@ -154,7 +168,8 @@
    :school [:holy 3]
    :effects #{:heal :cure}
    :traits #{:epic :holy-mage-only}
-   :description "Heal target creature the amount rolled on 12 attack dice. Remove as many condition markers as you wish from target creature by paying their removal costs."}
+   :description "Heal target creature the amount rolled on 12 attack dice. Remove as many condition markers as you wish from target creature by paying their removal costs."
+   :image "MW1I16.jpg"}
   {:name "Minor Heal"
    :subtypes #{:healing}
    :casting-cost 5
@@ -164,7 +179,8 @@
    :school [:holy 1]
    :effects #{:heal}
    :traits #{}
-   :description "Heal target creature the amount rolled on 5 attack dice."}
+   :description "Heal target creature the amount rolled on 5 attack dice."
+   :image "MW1I17.jpg"}
   {:name "Perfect Strike"
    :subtypes #{:command}
    :casting-cost 2
@@ -174,7 +190,8 @@
    :school [:war 1]
    :effects #{:unavoidable [:melee :buff]}
    :traits #{:novice}
-   :description "Target's next melee attack gains the **Unavoidable** trait."}
+   :description "Target's next melee attack gains the **Unavoidable** trait."
+   :image "MW1I18.jpg"}
   {:name "Piercing Strike"
    :subtypes #{:command}
    :casting-cost 2
@@ -184,7 +201,8 @@
    :school [:war 1]
    :effects #{:piercing [:melee :buff]}
    :traits #{:novice}
-   :description "Target's next melee attack gains the **Piercing +3** trait."}
+   :description "Target's next melee attack gains the **Piercing +3** trait."
+   :image "MW1I19.jpg"}
   {:name "Purge Magic"
    :subtypes #{:metamagic}
    :casting-cost 12
@@ -194,7 +212,8 @@
    :secondary-targets #{:enchantment}
    :school [:arcane 3]
    :effects #{:destroy}
-   :description "Destroy all enchantments attached to target object (both hidden and revealed)."}
+   :description "Destroy all enchantments attached to target object (both hidden and revealed)."
+   :image "MW1I21.jpg"}
   {:name "Purify"
    :subtypes #{:healing}
    :casting-cost -1
@@ -204,7 +223,8 @@
    :secondary-targets #{[:condition :poison] [:enchantment :poison]}
    :school [:holy 3]
    :effects #{:cure}
-   :description "Remove as many *poison* **conditions** as you wish from target, paying the removal cost for each one. Then, destroy as many revealed *poision* **enchantments** from the target as you wish, paying the total mana cost (casting and reveal cost) for eaach one."}
+   :description "Remove as many *poison* **conditions** as you wish from target, paying the removal cost for each one. Then, destroy as many revealed *poision* **enchantments** from the target as you wish, paying the total mana cost (casting and reveal cost) for eaach one."
+   :image "MW1I20.jpg"}
   {:name "Resurrection"
    :subtypes #{:healing}
    :casting-cost -1
@@ -213,7 +233,8 @@
    :targets #{[:creature :destroyed :living]}
    :school [:holy 4]
    :effects #{:resurrect}
-   :description "Choose a destroyed Living creature from your discard pile and summon it to the caster's zone. X = target spell's mana cost plus its spell Level."}
+   :description "Choose a destroyed Living creature from your discard pile and summon it to the caster's zone. X = target spell's mana cost plus its spell Level."
+   :image "MW1I22.jpg"}
   {:name "Rouse the Beast"
    :subtypes #{}
    :casting-cost -1
@@ -222,7 +243,8 @@
    :targets #{[:creature :living]}
    :school [:nature 1]
    :effects #{:action}
-   :description "Target a creature summoned this round. Flip target creature's action marker to the active side. That creature may act normally this round. You can only cast this one time per round on the same creature. X = target's Level."}
+   :description "Target a creature summoned this round. Flip target creature's action marker to the active side. That creature may act normally this round. You can only cast this one time per round on the same creature. X = target's Level."
+   :image "MW1I23.jpg"}
   {:name "Seeking Dispel"
    :subtypes #{:metamagic}
    :casting-cost 2
@@ -231,7 +253,8 @@
    :targets #{[:enchantment :hidden]}
    :school [:arcane 1]
    :effects #{:destroy}
-   :description "Destroy target hidden enchantment. Controller of target enchantment cannot reveal the enchantment once Seeking Dispel has been cast."}
+   :description "Destroy target hidden enchantment. Controller of target enchantment cannot reveal the enchantment once Seeking Dispel has been cast."
+   :image "MW1I24.jpg"}
   {:name "Shift Enchantment"
    :subtypes #{:metamagic}
    :casting-cost -1
@@ -241,7 +264,8 @@
    :school [:arcane 1]
    :effects #{}
    :traits #{:novice}
-   :description "Choose a destroyed Living creature from your discard pile and summon it to the caster's zone. X = target spell's mana cost plus its spell Level."}
+   :description "Choose a destroyed Living creature from your discard pile and summon it to the caster's zone. X = target spell's mana cost plus its spell Level."
+   :image "MW1I25.jpg"}
   {:name "Sleep"
    :subtypes #{:psychic}
    :casting-cost -1
@@ -257,7 +281,8 @@
 * Level 2 = 5 mana
 * Level 3 = 6 mana
 
-Add 2 mana to the cost for each Level beyond 3."}
+Add 2 mana to the cost for each Level beyond 3."
+   :image "MW1I26.jpg"}
   {:name "Steal Enchantment"
    :subtypes #{:metamagic}
    :casting-cost -1
@@ -267,7 +292,8 @@ Add 2 mana to the cost for each Level beyond 3."}
    :school [:arcane 3]
    :effects #{}
    :traits #{}
-   :description "Move target revealed enchantment to a new legal target. Both the enchantment and the new target must be within range and LoS. You now control that enchantment. X = the casting & reveal cost of target enchantment, plus you pay the casting & reveal cost of attaching it to the new target (as if you just cast and revealed the spell)."}
+   :description "Move target revealed enchantment to a new legal target. Both the enchantment and the new target must be within range and LoS. You now control that enchantment. X = the casting & reveal cost of target enchantment, plus you pay the casting & reveal cost of attaching it to the new target (as if you just cast and revealed the spell)."
+   :image "MW1I27.jpg"}
   {:name "Teleport"
    :subtypes #{:teleport}
    :casting-cost -1
@@ -277,7 +303,8 @@ Add 2 mana to the cost for each Level beyond 3."}
    :school [:arcane 2]
    :effects #{:teleport}
    :traits #{}
-   :description "Target creature is Teleported to the target zone. X = 3 maana per zone moved away from its current zone. You must pay at least 3 mana even if target is teleported into the same zone. This does not count as a move action for the creature."}
+   :description "Target creature is Teleported to the target zone. X = 3 maana per zone moved away from its current zone. You must pay at least 3 mana even if target is teleported into the same zone. This does not count as a move action for the creature."
+   :image "MW1I28.jpg"}
   {:name "Vampiric Strike"
    :subtypes #{:vampiric}
    :casting-cost 3
@@ -287,4 +314,5 @@ Add 2 mana to the cost for each Level beyond 3."}
    :school [:dark 1]
    :effects #{:vampiric :piercing [:melee :buff]}
    :traits #{}
-   :description "Target's next melee attack this round gains the **Vampiric** and **Piercing +1** traits."}}
+   :description "Target's next melee attack this round gains the **Vampiric** and **Piercing +1** traits."
+   :image "MW1I29.jpg"}}

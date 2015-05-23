@@ -7,7 +7,8 @@
    :slots #{:ring}
    :effects #{[:mana :buff]}
    :traits #{:wizard-only}
-   :description "Once per round, this Mage may pay 1 less mana when he casts or reveals a *metamagic* or *mana* spell. Enchantments only receive this discount when they are revealed."}
+   :description "Once per round, this Mage may pay 1 less mana when he casts or reveals a *metamagic* or *mana* spell. Enchantments only receive this discount when they are revealed."
+   :image "MW1Q01.jpg"}
   {:name "Bearskin"
    :subtypes #{}
    :casting-cost 6
@@ -15,7 +16,8 @@
    :slots #{:chest}
    :effects #{[:armor 2] [:damage-mod :frost -2]}
    :traits #{}
-   :description "Mage gains **Armor +2** and the **Frost -2** trait."}
+   :description "Mage gains **Armor +2** and the **Frost -2** trait."
+   :image "MW1Q02.jpg"}
   {:name "Crown of Protection"
    :subtypes #{:protection}
    :secondary-targets #{[:creature :living :non-mage]}
@@ -24,7 +26,8 @@
    :slots #{:helmet}
    :effects #{[:armor :buff]}
    :traits #{:priestess-only}
-   :description "Once per round as a quick spell, this Mage may pay 2 mana to place an **Armor +1** token on a target Living non-Mage creature up to one zone away. These tokens may stack."}
+   :description "Once per round as a quick spell, this Mage may pay 2 mana to place an **Armor +1** token on a target Living non-Mage creature up to one zone away. These tokens may stack."
+   :image "MW1Q03.jpg"}
   {:name "Dawnbreaker Ring"
    :subtypes #{}
    :casting-cost 3
@@ -32,7 +35,8 @@
    :slots #{:ring}
    :effects #{[:melee 1 :light] [:ranged 1 :light]}
    :traits #{:priestess-only}
-   :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *light* damage."}
+   :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *light* damage."
+   :image "MW1Q27.jpg"}
   {:name "Deflection Bracers"
    :subtypes #{}
    :casting-cost 6
@@ -43,7 +47,8 @@
                 :uses 1
                 :restrictions #{:no-ranged}}}
    :traits #{}
-   :description "Mage gains a **Defense**."}
+   :description "Mage gains a **Defense**."
+   :image "MW1Q04.jpg"}
   {:name "Demonhide Armor"
    :subtypes #{}
    :casting-cost 8
@@ -55,7 +60,8 @@
                :effects #{}
                :traits #{:ethereal :unavoidable :critical}}}
    :traits #{:dark-mage-only}
-   :description "Mage gains **Armor +2** and a **Damage Barrier**."}
+   :description "Mage gains **Armor +2** and a **Damage Barrier**."
+   :image "MW1Q05.jpg"}
   {:name "Dragonscale Hauberk"
    :subtypes #{}
    :casting-cost 6
@@ -63,7 +69,8 @@
    :slots #{:chest}
    :effects #{[:armor 2] [:flame -2]}
    :traits #{}
-   :description "Mage gains **Armor +2** and **Flame -2** trait."}
+   :description "Mage gains **Armor +2** and **Flame -2** trait."
+   :image "MW1Q06.jpg"}
   {:name "Elemental Cloak"
    :subtypes #{}
    :casting-cost 6
@@ -71,7 +78,8 @@
    :slots #{:cloak}
    :effects #{[:armor 2] [:flame -2]}
    :traits #{}
-   :description "Mage gains **Armor +2** and **Flame -2** trait."}
+   :description "Mage gains **Armor +2** and **Flame -2** trait."
+   :image "MW1Q07.jpg"}
   {:name "Elemental Wand"
    :subtypes #{}
    :secondary-targets #{:spell}
@@ -80,7 +88,8 @@
    :slots #{:weapon :shield}
    :effects #{}
    :traits #{:spellbind}
-   :description "You may bind a non-Epic attack spell from your spellbook to Elemental Wand. As a quick spell, you may pay 3 mana to change the bound spell."}
+   :description "You may bind a non-Epic attack spell from your spellbook to Elemental Wand. As a quick spell, you may pay 3 mana to change the bound spell."
+   :image "MW1Q08.jpg"}
   {:name "Enchanter's Ring"
    :subtypes #{}
    :secondary-targets #{[:spell :enchantment] [:creature :friendly]}
@@ -89,7 +98,8 @@
    :slots #{:ring}
    :effects #{}
    :traits #{:spellbind}
-   :description "Once per round, this Mage may pay 1 less mana when he casts an enchantment spell that targets a friendly creature."}
+   :description "Once per round, this Mage may pay 1 less mana when he casts an enchantment spell that targets a friendly creature."
+   :image "MW1Q09.jpg"}
   {:name "Fireshaper Ring"
    :subtypes #{}
    :casting-cost 3
@@ -97,7 +107,8 @@
    :slots #{:ring}
    :effects #{[:melee 1 :flame] [:ranged 1 :flame]}
    :traits #{}
-   :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *flame* damage."}
+   :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *flame* damage."
+   :image "MW1Q10.jpg"}
   {:name "Gauntlets of Strength"
    :subtypes #{}
    :casting-cost 3
@@ -105,7 +116,8 @@
    :slots #{:gloves}
    :effects #{[:melee 1]}
    :traits #{}
-   :description "Mage gains the **Melee +1** trait."}
+   :description "Mage gains the **Melee +1** trait."
+   :image "MW1Q11.jpg"}
   {:name "Helm of Fear"
    :subtypes #{}
    :casting-cost 8
@@ -113,7 +125,8 @@
    :slots #{:helmet}
    :effects #{}
    :traits #{}
-   :description "Whenever this Mage is targeted by a melee attack (except a Counterstrike), at the beginning of the Declare Attack Step, roll the effect die. On a 9+ the attack is canceled. The attacker may choose to attack a different target instead. This does not affect creatures with the Nonliving or Psychic Immunity traits."}
+   :description "Whenever this Mage is targeted by a melee attack (except a Counterstrike), at the beginning of the Declare Attack Step, roll the effect die. On a 9+ the attack is canceled. The attacker may choose to attack a different target instead. This does not affect creatures with the Nonliving or Psychic Immunity traits."
+   :image "MW1Q12.jpg"}
   {:name "Ivarium Longbow"
    :subtypes #{}
    :casting-cost 8
@@ -129,7 +142,8 @@
                :range [1 2]
                :speed :slow}}
    :traits #{}
-   :description ""}
+   :description ""
+   :image "MW1Q13.jpg"}
   {:name "Lash of Hellfire"
    :subtypes #{}
    :casting-cost 8
@@ -144,7 +158,8 @@
                :ranged-melee :melee
                :speed :quick}}
    :traits #{:warlock-only}
-   :description ""}
+   :description ""
+   :image "MW1Q14.jpg"}
   {:name "Leather Boots"
    :subtypes #{}
    :casting-cost 2
@@ -152,7 +167,8 @@
    :slots #{:boots}
    :effects #{[:armor 1]}
    :traits #{:novice}
-   :description "Mage gains **Armor +1**"}
+   :description "Mage gains **Armor +1**"
+   :image "MW1Q15.jpg"}
   {:name "Leather Gloves"
    :subtypes #{}
    :casting-cost 2
@@ -160,7 +176,8 @@
    :slots #{:gloves}
    :effects #{[:armor 1]}
    :traits #{:novice}
-   :description "Mage gains **Armor +1**"}
+   :description "Mage gains **Armor +1**"
+   :image "MW1Q16.jpg"}
   {:name "Lightning Ring"
    :subtypes #{}
    :casting-cost 3
@@ -168,7 +185,8 @@
    :slots #{:ring}
    :effects #{[:melee 1 :lightning] [:ranged 1 :lightning]}
    :traits #{:novice}
-   :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *lightning* damage."}
+   :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *lightning* damage."
+   :image "MW1Q17.jpg"}
   {:name "Mage Staff"
    :subtypes #{}
    :casting-cost 3
@@ -183,7 +201,8 @@
                :ranged-melee :melee
                :speed :quick}}
    :traits #{:novice}
-   :description ""}
+   :description ""
+   :image "MW1Q18.jpg"}
   {:name "Mage Wand"
    :subtypes #{}
    :casting-cost 5
@@ -191,7 +210,8 @@
    :slots #{:weapon :shield}
    :effects #{}
    :traits #{:spellbind}
-   :description "You may bind a non-Epic incantation spell from your spellbook to Mage Wand. As a quick spell, you may pay 3 mana to change the bound spell."}
+   :description "You may bind a non-Epic incantation spell from your spellbook to Mage Wand. As a quick spell, you may pay 3 mana to change the bound spell."
+   :image "MW1Q19.jpg"}
   {:name "Moloch's Torment"
    :subtypes #{}
    :secondary-targets #{:creature}
@@ -200,7 +220,8 @@
    :slots #{:amulet}
    :effects #{:direct-damage}
    :traits #{:warlock-only}
-   :description "During the Upkeep Phase, for each creature that has at lease one *curse* you control attached to it, you may spend 1 mana to deal 1 direct damage to that creature."}
+   :description "During the Upkeep Phase, for each creature that has at lease one *curse* you control attached to it, you may spend 1 mana to deal 1 direct damage to that creature."
+   :image "MW1Q21.jpg"}
   {:name "Moonglow Amulet"
    :subtypes #{:mana}
    :casting-cost 6
@@ -208,7 +229,8 @@
    :slots #{:amulet}
    :effects #{[:channeling 1]}
    :traits #{}
-   :description "Mage gains the **Channel +1** trait."}
+   :description "Mage gains the **Channel +1** trait."
+   :image "MW1Q22.jpg"}
   {:name "Regrowth Belt"
    :subtypes #{}
    :casting-cost 6
@@ -216,7 +238,8 @@
    :slots #{:belt}
    :effects #{[:regenerate 2]}
    :traits #{}
-   :description "Mage gains the **Regenerate 2** trait."}
+   :description "Mage gains the **Regenerate 2** trait."
+   :image "MW1Q23.jpg"}
   {:name "Ring of Asyra"
    :subtypes #{:mana}
    :secondary-targets #{[:spell :holy :enchantment] [:spell :holy :incantation]}
@@ -225,7 +248,8 @@
    :slots #{:ring}
    :effects #{}
    :traits #{:priestess-only}
-   :description "Once per round, this mage may pay 1 less mana when she casts or reveals a *Holy* enchantment or incantation spell. Enchantments only receive this discount when they are revealed."}
+   :description "Once per round, this mage may pay 1 less mana when she casts or reveals a *Holy* enchantment or incantation spell. Enchantments only receive this discount when they are revealed."
+   :image "MW1Q24.jpg"}
   {:name "Ring of Beasts"
    :subtypes #{:mana}
    :secondary-targets #{[:spell :creature :animal]}
@@ -234,7 +258,8 @@
    :slots #{:ring}
    :effects #{}
    :traits #{:beastmaster-only}
-   :description "Once per round, this mage may pay 1 less mana when he casts an *animal* creature spell."}
+   :description "Once per round, this mage may pay 1 less mana when he casts an *animal* creature spell."
+   :image "MW1Q25.jpg"}
   {:name "Ring of Curses"
    :subtypes #{:mana}
    :secondary-targets #{[:spell :curse]}
@@ -243,7 +268,8 @@
    :slots #{:ring}
    :effects #{}
    :traits #{:warlock-only}
-   :description "Once per round, this mage may pay 1 less mana when he casts or reveals a *curse* spell. Enchantments only receive this discount when they are revealed."}
+   :description "Once per round, this mage may pay 1 less mana when he casts or reveals a *curse* spell. Enchantments only receive this discount when they are revealed."
+   :image "MW1Q28.jpg"}
   {:name "Staff of Asyra"
    :subtypes #{}
    :casting-cost 9
@@ -258,7 +284,8 @@
                :ranged-melee :melee
                :speed :quick}}
    :traits #{:priestess-only}
-   :description ""}
+   :description ""
+   :image "MW1Q29.jpg"}
   {:name "Staff of Beasts"
    :subtypes #{}
    :secondary-targets #{[:creature :animal]}
@@ -274,7 +301,8 @@
                :ranged-melee :melee
                :speed :quick}}
    :traits #{:beastmaster-only}
-   :description "Once per round, as a quick spell, this Mage may pay 2 mana and target an *animal* creature up to 1 zone away and either give them the **Melee +2** trait until end of round, or heal damage equal to the amount rolled on 2 attack dice."}
+   :description "Once per round, as a quick spell, this Mage may pay 2 mana and target an *animal* creature up to 1 zone away and either give them the **Melee +2** trait until end of round, or heal damage equal to the amount rolled on 2 attack dice."
+   :image "MW1Q30.jpg"}
   {:name "Staff of the Arcanum"
    :subtypes #{}
    :casting-cost 8
@@ -297,7 +325,8 @@
                :range [1 1]
                :speed :slow}}
    :traits #{}
-   :description ""}
+   :description ""
+   :image "MW1Q31.jpg"}
   {:name "Suppression Cloak"
    :subtypes #{}
    :casting-cost 8
@@ -305,7 +334,8 @@
    :slots #{:cloak}
    :effects #{:defense}
    :traits #{}
-   :description "The first time each round that each creature makes a melee attack against this Mage, its controller must pay 2 mana during the Declare Attack step, as an additional cost of making that attack. Has no effect on counterstrikes."}
+   :description "The first time each round that each creature makes a melee attack against this Mage, its controller must pay 2 mana during the Declare Attack step, as an additional cost of making that attack. Has no effect on counterstrikes."
+   :image "MW1Q32.jpg"}
   {:name "Wind Wyvern Hide"
    :subtypes #{}
    :casting-cost 6
@@ -313,4 +343,5 @@
    :slots #{:chest}
    :effects #{[:armor 2] [:damage-mod :wind -3]}
    :traits #{}
-   :description "Mage gains the **Armor +2** and the **Wind -3** trait."}}
+   :description "Mage gains the **Armor +2** and the **Wind -3** trait."
+   :image "MW1Q33.jpg"}}
