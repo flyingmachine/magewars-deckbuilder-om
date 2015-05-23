@@ -121,4 +121,15 @@ h4, .h4 {
   top: 50%;
   bottom: 0;
   overflow-y: auto;
+  img {
+    float: left;
+  }
+}
+
+.card-details {
+  @include span(6 at 7 of 12);
+}
+
+td {
+  padding-right: emRhythm(1);
 }

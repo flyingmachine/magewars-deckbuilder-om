@@ -9,7 +9,8 @@
    :damage-type :light
    :effects #{[:daze 4 9] [:stun 10 12]}
    :traits #{:ethereal :unavoidable [:nonliving 2]}
-   :description "Attacks all objects in the zone except the caster"}
+   :description "Attacks all objects in the zone except the caster"
+   :image "MW1A01.jpg"}
   {:name "Chain Lightning"
    :subtypes #{:lightning}
    :casting-cost 12
@@ -21,7 +22,8 @@
    :damage-type :lightning
    :effects #{[:daze 5 7] [:stun 8 12]}
    :traits #{:ethereal}
-   :description "Each time Chain Lightning damages a target, it may attack another target. That target must be in LoS to the last target, and may be up to 1 zone away from that target. Each successive attack rolls 1 fewer attack dice, and subtraacts 1 more from the effect die roll. Chain Lightning can't attack the same target twice."}
+   :description "Each time Chain Lightning damages a target, it may attack another target. That target must be in LoS to the last target, and may be up to 1 zone away from that target. Each successive attack rolls 1 fewer attack dice, and subtraacts 1 more from the effect die roll. Chain Lightning can't attack the same target twice."
+   :image "MW1A02.jpg"}
   {:name "Electrify"
    :subtypes #{:lightning}
    :casting-cost 9
@@ -33,7 +35,8 @@
    :damage-type :lightning
    :effects #{[:daze 7 8] [:stun 9 12]}
    :traits #{:ethereal :unavoidable}
-   :description "Attacks all objects in the zone except the caster"}
+   :description "Attacks all objects in the zone except the caster"
+   :image "MW1A03.jpg"}
   {:name "Flameblast"
    :subtypes #{:flame}
    :casting-cost 5
@@ -44,7 +47,8 @@
    :damage-type :flame
    :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
    :traits #{:defrost :unavoidable}
-   :description ""}
+   :description ""
+   :image "MW1A04.jpg"}
   {:name "Fireball"
    :subtypes #{:flame}
    :casting-cost 8
@@ -55,7 +59,8 @@
    :damage-type :flame
    :effects #{[[:burn 1] 4 10] [[:burn 2] 11 12]}
    :traits #{:defrost}
-   :description ""}
+   :description ""
+   :image "MW1A05.jpg"}
   {:name "Firestorm"
    :subtypes #{:flame}
    :casting-cost 11
@@ -67,7 +72,8 @@
    :damage-type :flame
    :effects #{[[:burn 1] 4 10] [[:burn 2] 11 12]}
    :traits #{:defrost :unavoidable}
-   :description ""}
+   :description ""
+   :image "MW1A06.jpg"}
   {:name "Geyser"
    :subtypes #{:hydro}
    :casting-cost 3
@@ -78,7 +84,8 @@
    :damage-type :hydro
    :effects #{[:daze 5 12]}
    :traits #{:unavoidable}
-   :description "During the Roll Dice Step of this attack, if the target has any Burn conditions on it, cancel this attack and remove all Burn conditions from the target instead."}
+   :description "During the Roll Dice Step of this attack, if the target has any Burn conditions on it, cancel this attack and remove all Burn conditions from the target instead."
+   :image "MW1A08.jpg"}
   {:name "Jet Stream"
    :subtypes #{:wind}
    :casting-cost 4
@@ -89,7 +96,8 @@
    :damage-type :wind
    :effects #{[:push 4 10] [:push :daze 11 12]}
    :traits #{:ethereal [:flying 2]}
-   :description ""}
+   :description ""
+   :image "MW1A09.jpg"}
   {:name "Lightning Bolt"
    :subtypes #{:lightning}
    :casting-cost 8
@@ -100,7 +108,8 @@
    :damage-type :lightning
    :effects #{[:daze 6 7] [:stun 8 12]}
    :traits #{:ethereal [:flying 2]}
-   :description ""}
+   :description ""
+   :image "MW1A07.jpg"}
   {:name "Pillar of Light"
    :subtypes #{:light}
    :casting-cost 5
@@ -111,7 +120,8 @@
    :damage-type :light
    :effects #{[:daze 4 10] [:stun 11 12]}
    :traits #{:ethereal [:nonliving 2]}
-   :description ""}
+   :description ""
+   :image "MW1A11.jpg"}
   {:name "Ring of Fire"
    :subtypes #{:flame}
    :casting-cost 9
@@ -123,7 +133,8 @@
    :damage-type :flame
    :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
    :traits #{:unavoidable :defrost}
-   :description "Attacks all objects in the zone except the caster."}
+   :description "Attacks all objects in the zone except the caster."
+   :image "MW1A12.jpg"}
   {:name "Thunderbolt"
    :subtypes #{:lightning}
    :casting-cost 10
@@ -135,4 +146,5 @@
    :damage-type :lightning
    :effects #{[:daze 4 6] [:stun 7 12]}
    :traits #{:ethereal}
-   :description ""}}
+   :description ""
+   :image "MW1A13.jpg"}}
