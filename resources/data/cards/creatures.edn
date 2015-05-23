@@ -20,7 +20,8 @@
                :traits #{:defrost :sweeping}
                :ranged-melee :melee
                :speed :slow}}
-   :description ""}
+   :description ""
+   :image "MW1C01.jpg"}
   {:name "Asyran Cleric"
    :subtypes #{:cleric}
    :casting-cost 5
@@ -44,7 +45,8 @@
                :range [0 1]
                :speed :slow
                :description "Heal target Living Creature the amount rolled"}}
-   :description ""}
+   :description ""
+   :image "MW1C02.jpg"}
   {:name "Bitterwood Fox"
    :subtypes #{:cleric}
    :casting-cost 5
@@ -59,7 +61,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C04.jpg"}
   {:name "Blue Gremlin"
    :subtypes #{:gremlin}
    :casting-cost 7
@@ -76,7 +79,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 8
                 :uses 1}}
-   :description "When this creature is activated, you may pay 1 mana. If you do, Gremlin gians the **Fast** trait until the end of the round, and each move action he takes this round is a Teleport to the next zone."}
+   :description "When this creature is activated, you may pay 1 mana. If you do, Gremlin gians the **Fast** trait until the end of the round, and each move action he takes this round is a Teleport to the next zone."
+   :image "MW1C05.jpg"}
   {:name "Brogan Bloodstone"
    :subtypes #{:knight :soldier}
    :casting-cost 15
@@ -91,7 +95,8 @@
                :traits #{:unavoidable [:piercing 3]}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C06.jpg"}
   {:name "Cervere, The Forest Shadow"
    :subtypes #{:animal :cat}
    :casting-cost 15
@@ -108,7 +113,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 8
                 :uses 1}}
-   :description ""}
+   :description ""
+   :image "MW1C07.jpg"}
   {:name "Darkfenne Bat"
    :subtypes #{:animal :bat}
    :casting-cost 5
@@ -123,7 +129,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C08.jpg"}
   {:name "Darkfenne Hydra"
    :subtypes #{:serpent}
    :casting-cost 16
@@ -145,7 +152,8 @@
                :traits #{:triplestrike}
                :ranged-melee :melee
                :speed :slow}}
-   :description ""}
+   :description ""
+   :image "MW1C09.jpg"}
   {:name "Dark Pact Slayer"
    :subtypes #{:demon}
    :casting-cost 13
@@ -160,7 +168,8 @@
                :traits #{[:piercing 2]}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C03.jpg"}
   {:name "Emerald Tegu"
    :subtypes #{:animal, :reptile}
    :casting-cost 9
@@ -175,7 +184,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C12.jpg"}
   {:name "Fellella, Pixie Familiar"
    :subtypes #{:faerie}
    :casting-cost 12
@@ -193,7 +203,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 6
                 :uses -1}}
-   :description "Fellella can only cast enchantment spells"}
+   :description "Fellella can only cast enchantment spells"
+   :image "MW1C13.jpg"}
   {:name "Feral Bobcat"
    :subtypes #{:animal :cat}
    :casting-cost 5
@@ -210,7 +221,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 8
                 :uses 1}}
-   :description ""}
+   :description ""
+   :image "MW1C14.jpg"}
   {:name "Firebrand Imp"
    :subtypes #{:demon}
    :casting-cost 5
@@ -225,7 +237,8 @@
                :traits #{:defrost}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C15.jpg"}
   {:name "Flaming Hellion"
    :subtypes #{:demon}
    :casting-cost 13
@@ -248,7 +261,8 @@
                :traits #{:defrost}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C16.jpg"}
   {:name "Goran, Werewolf Pet"
    :subtypes #{:lycanthrope :canine}
    :casting-cost 15
@@ -270,7 +284,8 @@
                :traits #{:doublestrike}
                :ranged-melee :melee
                :speed :slow}}
-   :description "Goran gains an additional **Bloodthirsty +1** trait while in the same zone as this controlling Mage."}
+   :description "Goran gains an additional **Bloodthirsty +1** trait while in the same zone as this controlling Mage."
+   :image "MW1C17.jpg"}
   {:name "Gorgon Archer"
    :subtypes #{:serpent}
    :casting-cost 16
@@ -293,7 +308,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C18.jpg"}
   {:name "Gray Angel"
    :subtypes #{:angel}
    :casting-cost 12
@@ -316,7 +332,8 @@
                :ranged-melee :ranged
                :speed :slow
                :description "Heal any Living creature in the arena the amount rolled. Then, destroy Gray Angel."}}
-   :description "Goran gains an additional **Bloodthirsty +1** trait while in the same zone as this controlling Mage."}
+   :description "Goran gains an additional **Bloodthirsty +1** trait while in the same zone as this controlling Mage."
+   :image "MW1C19.jpg"}
   {:name "Highland Unicorn"
    :subtypes #{:animal :horse}
    :casting-cost 13
@@ -332,7 +349,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description "All friendly living creatures in the same zone as Highland Unicorn gain the **Regenerate 1** trait."}
+   :description "All friendly living creatures in the same zone as Highland Unicorn gain the **Regenerate 1** trait."
+   :image "MW1C20.jpg"}
   {:name "Huginn, Raven Familiar"
    :subtypes #{:animal :bird}
    :casting-cost 11
@@ -359,7 +377,8 @@
                :description "Huginn may look at a target hidden enchantment. After looking, leave it face down (hidden)."}}
    :defenses #{{:effectiveness 6
                 :uses -1}}
-   :description "Huginn can only cast Level 1-2 incantation spells."}
+   :description "Huginn can only cast Level 1-2 incantation spells."
+   :image "MW1C21.jpg"}
   {:name "Knight of Westlock"
    :subtypes #{:knight :soldier}
    :casting-cost 13
@@ -376,7 +395,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 8
                 :uses 1}}
-   :description ""}
+   :description ""
+   :image "MW1C22.jpg"}
   {:name "Malacoda"
    :subtypes #{:demon}
    :casting-cost 16
@@ -391,7 +411,8 @@
                :traits #{[:piercing 1]}
                :ranged-melee :melee
                :speed :quick}}
-   :description "Each Upkeep Phase, all Living creatures in Malacoda's zone receive 2 points of direct *poison* damage."}
+   :description "Each Upkeep Phase, all Living creatures in Malacoda's zone receive 2 points of direct *poison* damage."
+   :image "MW1C23.jpg"}
   {:name "Mana Leech"
    :subtypes #{:worm}
    :casting-cost 8
@@ -413,7 +434,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :slow}}
-   :description ""}
+   :description ""
+   :image "MW1C24.jpg"}
   {:name "Moonglow Faerie"
    :subtypes #{:faerie}
    :casting-cost 8
@@ -430,7 +452,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 6
                 :uses -1}}
-   :description ""}
+   :description ""
+   :image "MW1C27.jpg"}
   {:name "Mountain Gorilla"
    :subtypes #{:animal :ape}
    :casting-cost 16
@@ -445,7 +468,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C25.jpg"}
   {:name "Necropian Vampiress"
    :subtypes #{:vampire}
    :casting-cost 16
@@ -461,7 +485,8 @@
                :traits #{:vampiric}
                :ranged-melee :melee
                :speed :quick}}
-   :description "When this creature is activated, you may pay 1 mana to give her the **Flying** trait until the end of her Action Phase."}
+   :description "When this creature is activated, you may pay 1 mana to give her the **Flying** trait until the end of her Action Phase."
+   :image "MW1C26.jpg"}
   {:name "Redclaw, Alpha Male"
    :subtypes #{:animal :canine}
    :casting-cost 16
@@ -477,7 +502,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description "All other friendly *canine* creatures in the same zone as Redclaw gain **Armor +1** and the **Melee +1** trait."}
+   :description "All other friendly *canine* creatures in the same zone as Redclaw gain **Armor +1** and the **Melee +1** trait."
+   :image "MW1C29.jpg"}
   {:name "Royal Archer"
    :subtypes #{:high-elf :soldier}
    :casting-cost 12
@@ -500,7 +526,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C28.jpg"}
   {:name "Samandriel, Angel of Light"
    :subtypes #{:angel}
    :casting-cost 21
@@ -515,7 +542,8 @@
                :traits #{:ethereal [:extra-dice 1 #{:nonliving :dark}]}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C31.jpg"}
   {:name "Skeletal Sentry"
    :subtypes #{:undead :skeleton}
    :casting-cost 8
@@ -530,7 +558,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C32.jpg"}
   {:name "Sosruko, Ferret Companion"
    :subtypes #{:animal}
    :casting-cost 7
@@ -547,7 +576,8 @@
                :speed :quick}}
    :defenses #{{:effectiveness 5
                 :uses -1}}
-   :description ""}
+   :description ""
+   :image "MW1C33.jpg"}
   {:name "Steelclaw Grizzly"
    :subtypes #{:animal :bear}
    :casting-cost 17
@@ -569,7 +599,8 @@
                :traits #{[:piercing 1]}
                :ranged-melee :melee
                :speed :slow}}
-   :description ""}
+   :description ""
+   :image "MW1C34.jpg"}
   {:name "Stonegaze Basilisk"
    :subtypes #{:reptile :lizard}
    :casting-cost 12
@@ -592,7 +623,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C35.jpg"}
   {:name "Tarok, the Skyhunter"
    :subtypes #{:animal :bird}
    :casting-cost 13
@@ -610,7 +642,8 @@
    :defenses #{{:effectiveness 7
                 :uses 1
                 :restrictions #{:no-ranged}}}
-   :description ""}
+   :description ""
+   :image "MW1C36.jpg"}
   {:name "Thunderift Falcon"
    :subtypes #{:animal :bird}
    :casting-cost 6
@@ -625,7 +658,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C37.jpg"}
   {:name "Timber Wolf"
    :subtypes #{:animal :canine}
    :casting-cost 9
@@ -640,7 +674,8 @@
                :traits #{}
                :ranged-melee :melee
                :speed :quick}}
-   :description ""}
+   :description ""
+   :image "MW1C38.jpg"}
   {:name "Valshalla, Lightning Angel"
    :subtypes #{:animal :canine}
    :casting-cost 21
@@ -656,7 +691,8 @@
                :traits #{:ethereal}
                :ranged-melee :melee
                :speed :quick}}
-   :description "Once per round, if a friendly creature is attacked and destroyed by an enemy creature, place a Wrath token on Valshalla, up to a maximum of 4 tokens. For each Wrath token on her, Valshalla gains **Melee +1**."}
+   :description "Once per round, if a friendly creature is attacked and destroyed by an enemy creature, place a Wrath token on Valshalla, up to a maximum of 4 tokens. For each Wrath token on her, Valshalla gains **Melee +1**."
+   :image "MW1C39.jpg"}
   {:name "Whirling Spirit"
    :subtypes #{:wind}
    :casting-cost 12
@@ -671,4 +707,5 @@
                :traits #{:ethereal [:extra-dice 2 :incorporeal]}
                :ranged-melee :melee
                :speed :quick}}
-   :description "Once per round, if a friendly creature is attacked and destroyed by an enemy creature, place a Wrath token on Valshalla, up to a maximum of 4 tokens. For each Wrath token on her, Valshalla gains **Melee +1**."}}
+   :description "Once per round, if a friendly creature is attacked and destroyed by an enemy creature, place a Wrath token on Valshalla, up to a maximum of 4 tokens. For each Wrath token on her, Valshalla gains **Melee +1**."
+   :image "MW1C40.jpg"}}

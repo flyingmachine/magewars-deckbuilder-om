@@ -3,7 +3,7 @@
 index = 1
 
 sets = {"attacks" => "MW1A"}
-
+sets = {"creatures" => "MW1C"}
 
 sets.each {|k, v|
   text = File.read("#{k}.edn")

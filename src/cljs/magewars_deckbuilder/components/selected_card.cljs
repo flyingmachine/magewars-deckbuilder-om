@@ -11,13 +11,9 @@
   (c-type [x] (name x))
 
   cljs.core.PersistentVector
-  (c-type [x]
-    (println x)
-    (str (first x) ": " (second x))))
+  (c-type [x] (str (first x) ": " (second x))))
 
-(defmulti schools (fn [s]
-                    (println "schools")
-                    (type (first s))))
+(defmulti schools (fn [s] (type (first s))))
 (defmethod schools cljs.core.Keyword
   [[school level]]
   (str (name school) ", level " level))
