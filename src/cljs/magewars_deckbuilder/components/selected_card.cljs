@@ -4,14 +4,17 @@
             [clojure.string :as s]))
 
 (defprotocol CardDetails
-  (c-type [x]))
+  (c-type [x])
+  (target [x]))
 
 (extend-protocol CardDetails
   cljs.core.Keyword
   (c-type [x] (name x))
+  (target [x] (name x))
 
   cljs.core.PersistentVector
-  (c-type [x] (str (first x) ": " (second x))))
+  (c-type [x] (str (first x) ": " (second x)))
+  (target [x] (s/join ", " (map name x))))
 
 (defmulti schools (fn [s] (type (first s))))
 (defmethod schools cljs.core.Keyword
@@ -43,7 +46,7 @@
     (row "Schools" (schools (:school c)))
     (row "Casting Cost" (:casting-cost c))
     (row "Speed" (name (:speed c)))
-    (row "Targets" (display-many (:targets c)))
+    (row "Targets" (s/join "; " (map target (:targets c))))
     (row "Description" (:description c))))
 
 (defn selected-card-view [{:keys [selected-card cards-by-name]} owner]
