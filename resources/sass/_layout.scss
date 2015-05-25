@@ -127,6 +127,13 @@ h4, .h4 {
   overflow-y: auto;
   img {
     float: left;
+    margin-left: emRhythm(2);
+  }
+  h3 {
+    margin-bottom: emRhythm(4, $ms-up1);
+    @media (min-width: 56.25em) {
+      margin-bottom: emRhythm(4, $ms-up2);
+    }
   }
 }
 
