@@ -77,8 +77,10 @@
   (reify
     om/IRender
     (render [_]
-      (dom/li #js {:onClick (fn [e] (put! (om/get-shared owner :toggle-filter)
-                                         [attr root]))}
+      (dom/li #js {:onClick (fn [e]
+                              (.stopPropagation e)
+                              (put! (om/get-shared owner :toggle-filter)
+                                    [attr root]))}
               (dom/label #js {:className (if selected "selected")}
                          (str (display val) " " count))
               (if children (om/build val-list children))))))

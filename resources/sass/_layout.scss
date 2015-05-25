@@ -3,14 +3,17 @@
 }
 
 ul {
-  margin-bottom: 0;
+  margin: emRhythm(4) 0;
   margin-left: 0;
+  ul {
+    margin: 0;
+  }
 }
 
 li {
   list-style: none;
   li label {
-    padding-left: emRhythm(2, $ms-down1);
+    padding-left: emRhythm(4, $ms-down1);
   }
 }
 
