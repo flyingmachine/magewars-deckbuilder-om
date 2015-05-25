@@ -44,7 +44,7 @@ label:hover {
 }
 
 .cards {
-  border-bottom: 2px solid #444;
+  // border-bottom: 2px solid #444;
   li:hover {
     background: $hover;
   }
@@ -100,12 +100,10 @@ h4 {
 .cards {
   &:before {
     display: block;
-    position: absolute;
-    left: span(4);
-    bottom: 50%;
+    position: fixed;
     width: 0;
-    bottom: 0;
-    left: 0;
+    bottom: 50%;
+    left: span(4);
     content: "";
     border-bottom: solid emRhythm(10) #ede6d4;
     border-left: solid emRhythm(80) #f1ead7;
