@@ -31,10 +31,36 @@ label:hover {
 
 h3 {
   background: #f69da4;
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    width: 0;
+    top: 0;
+    right: 0;
+    content: "";
+    border-right: solid emRhythm(4, $ms-up2) white;
+    border-top: solid emRhythm(4, $ms-up2) white;
+    border-bottom: solid emRhythm(4, $ms-up2) transparent;
+    border-left: solid emRhythm(4, $ms-up2) transparent;
+  }
 }
 
 h4 {
   background: #fbbba0;
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    width: 0;
+    top: 0;
+    right: 0;
+    content: "";
+    border-right: solid emRhythm(4, $ms-up1) white;
+    border-top: solid emRhythm(4, $ms-up1) white;
+    border-bottom: solid emRhythm(4, $ms-up1) transparent;
+    border-left: solid emRhythm(4, $ms-up1) transparent;
+  }
 }
 
 .fa-exchange:hover {
