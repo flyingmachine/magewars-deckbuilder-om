@@ -1,12 +1,16 @@
-$hover: #fefee2;
-$selected: #fddeb0;
+$hover: #667876;
+$selected: #667876;
 
 body {
   font-family: $font-sans;
+  background: #efe8d5;
 }
 
 label:hover {
   background: $hover;
+  position: relative;
+  top: -2px;
+  box-shadow: 0px 2px 0px 0px #4f5c5b;
   cursor: pointer;
 }
 
@@ -15,11 +19,28 @@ label:hover {
 }
 
 .selected:hover {
-  background: #fdedb0;
+  //background: #7f9290;
 }
 
 .filters {
   border-right: 2px solid #444;
+  background: #fcfae1;
+  background: #2b3332;
+  color: white;
+  color: #d9cb9e;
+  &:before {
+    display: block;
+    position: fixed;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    border-bottom: solid emRhythm(40) #1e1e20;
+    border-left: solid emRhythm(20) #2a2c2b;
+    border-top: solid emRhythm(20) transparent;
+    border-right: solid emRhythm(20) transparent;
+    z-index: -1;
+  }
 }
 
 .cards {
@@ -29,9 +50,14 @@ label:hover {
   }
 }
 
+
+
 h3 {
   background: #f69da4;
+  background: #b9121b;
   position: relative;
+  color: white;
+  font-weight: normal;
   &:after {
     display: block;
     position: absolute;
@@ -39,8 +65,8 @@ h3 {
     top: 0;
     right: 0;
     content: "";
-    border-right: solid emRhythm(4, $ms-up2) white;
-    border-top: solid emRhythm(4, $ms-up2) white;
+    border-right: solid emRhythm(4, $ms-up2) #8b0d14;
+    border-top: solid emRhythm(4, $ms-up2) #5c090d;
     border-bottom: solid emRhythm(4, $ms-up2) transparent;
     border-left: solid emRhythm(4, $ms-up2) transparent;
   }
@@ -48,7 +74,10 @@ h3 {
 
 h4 {
   background: #fbbba0;
+  background: #b94d53;
+  color: white;
   position: relative;
+  font-weight: normal;
   &:after {
     display: block;
     position: absolute;
@@ -56,13 +85,32 @@ h4 {
     top: 0;
     right: 0;
     content: "";
-    border-right: solid emRhythm(4, $ms-up1) white;
-    border-top: solid emRhythm(4, $ms-up1) white;
+    border-right: solid emRhythm(4, $ms-up1) #973c41;
+    border-top: solid emRhythm(4, $ms-up1) #602629;
     border-bottom: solid emRhythm(4, $ms-up1) transparent;
     border-left: solid emRhythm(4, $ms-up1) transparent;
   }
 }
 
 .fa-exchange:hover {
-  background: $selected;
+  background: rgba(255,255,255, 0.8);
+}
+
+
+.cards {
+  &:before {
+    display: block;
+    position: absolute;
+    left: span(4);
+    bottom: 50%;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    border-bottom: solid emRhythm(10) #ede6d4;
+    border-left: solid emRhythm(80) #f1ead7;
+    border-top: solid emRhythm(20) transparent;
+    border-right: solid emRhythm(20) transparent;
+    z-index: -1;
+  }
 }
