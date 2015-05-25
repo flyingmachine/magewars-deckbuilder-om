@@ -16,7 +16,7 @@ li {
 
 label {
   display: block;
-  padding: 0 emRhythm(1, $ms-down1);
+  padding: 0 emRhythm(2, $ms-down1);
 }
 
 /* type settings defaults 
@@ -59,11 +59,11 @@ h6, .h6 {
 
 h3, .h3 {
   @include setType(6, $ms-up1);
-  padding-left: emRhythm(1, $ms-up1);
+  padding-left: emRhythm(2, $ms-up1);
   margin-bottom: 0;
   @media (min-width: 56.25em) {
     margin-bottom: 0;
-    padding-left: emRhythm(1, $ms-up2);
+    padding-left: emRhythm(2, $ms-up2);
     @include setType(8, $ms-up2);
   }
 }
@@ -71,7 +71,7 @@ h3, .h3 {
 h4, .h4 {
   margin-bottom: 0;
   @include setType(8, $ms-up1);
-  padding-left: emRhythm(1, $ms-up1);
+  padding-left: emRhythm(2, $ms-up1);
 }
 
 
@@ -131,5 +131,5 @@ h4, .h4 {
 }
 
 td {
-  padding-right: emRhythm(1);
+  padding-right: emRhythm(2);
 }
