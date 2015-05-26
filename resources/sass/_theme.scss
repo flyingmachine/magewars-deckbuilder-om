@@ -23,10 +23,7 @@ label:hover {
 }
 
 .filters {
-  border-right: 2px solid #444;
-  background: #fcfae1;
   background: #2b3332;
-  color: white;
   color: #d9cb9e;
   &:before {
     display: block;
@@ -53,8 +50,7 @@ label:hover {
 
 
 h3 {
-  background: #f69da4;
-  background: #b9121b;
+  background: #a61018;
   position: relative;
   color: white;
   font-weight: normal;
@@ -68,12 +64,11 @@ h3 {
     border-right: solid emRhythm(4, $ms-up2) #8b0d14;
     border-top: solid emRhythm(4, $ms-up2) #5c090d;
     border-bottom: solid emRhythm(4, $ms-up2) transparent;
-    border-left: solid emRhythm(4, $ms-up2) transparent;
+    border-left: solid emRhythm(8, $ms-up2) transparent;
   }
 }
 
 h4 {
-  background: #fbbba0;
   background: #b94d53;
   color: white;
   position: relative;
@@ -88,7 +83,7 @@ h4 {
     border-right: solid emRhythm(4, $ms-up1) #973c41;
     border-top: solid emRhythm(4, $ms-up1) #602629;
     border-bottom: solid emRhythm(4, $ms-up1) transparent;
-    border-left: solid emRhythm(4, $ms-up1) transparent;
+    border-left: solid emRhythm(8, $ms-up1) transparent;
   }
 }
 
@@ -105,10 +100,26 @@ h4 {
     bottom: 50%;
     left: span(4);
     content: "";
-    border-bottom: solid emRhythm(10) #ede6d4;
-    border-left: solid emRhythm(80) #f1ead7;
+    border-bottom: solid emRhythm(10) rgba(0,0,0, 0.2);
+    border-left: solid emRhythm(80) rgba(255,255,255, 0.5);
     border-top: solid emRhythm(20) transparent;
     border-right: solid emRhythm(20) transparent;
+    z-index: -1;
+  }
+}
+
+#selected-card {
+  &:before {
+    display: block;
+    position: fixed;
+    width: 0;
+    bottom: 0;
+    right: 0;
+    content: "";
+    border-bottom: solid emRhythm(10) rgba(0,0,0, 0.2);
+    border-right: solid emRhythm(5) rgba(255,255,255, 0.5);
+    border-top: solid emRhythm(20) transparent;
+    border-left: solid emRhythm(20) transparent;
     z-index: -1;
   }
 }
