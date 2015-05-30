@@ -19,6 +19,7 @@ li {
 label {
   display: block;
   padding: 0 emRhythm(2);
+  position: relative;
 }
 
 /* type settings defaults 
@@ -101,7 +102,7 @@ h4, .h4 {
 .card-list {
   @include span(6 of 12);
   label {
-    padding: 0 emRhythm(2, $ms-down1);
+    padding: 0 emRhythm(3, $ms-down1);
   }
   &:last-child {
     @include span(6 at 7 of 12);
@@ -114,8 +115,9 @@ h4, .h4 {
   padding: 3px;
   border-radius: 2px;
   margin-right: 5px;
-  position: relative;
-  top: -2px;
+  position: absolute;
+  top: 2px;
+  left: emRhythm(1, $ms-down1);
   min-width: 8px;
   min-height: 8px;
 }
