@@ -14,12 +14,6 @@
 (def app-state
   (atom {:selected-filters (f/empty-filters f/attribute-filter-types)}))
 
-(defn row
-  [x y]
-  (dom/tr nil
-    (dom/td nil x)
-    (dom/td nil y)))
-
 (edn-xhr
  {:method :get
   :url "/cards"
