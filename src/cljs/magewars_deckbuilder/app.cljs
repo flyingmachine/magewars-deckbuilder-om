@@ -14,8 +14,8 @@
 
 (def app-state
   (atom {:selected-filters (f/empty-filters f/attribute-filter-types)
-         :selected-mage {}
-         :selected-element {}}))
+         :mage {:selected-mage nil
+                :selected-element nil}}))
 
 (edn-xhr
  {:method :get

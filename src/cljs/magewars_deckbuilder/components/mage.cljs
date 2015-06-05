@@ -38,10 +38,10 @@
 (defn wizard? [x] (= "Wizard" (:class x)))
 
 (defn select-mage
-  [{:keys [mage selected-mage selected-element]}]
-  (om/update! selected-mage mage)
+  [{:keys [mage data]}]
+  (om/update! data :selected-mage mage)
   (when-not (wizard? mage)
-    (om/update! selected-element {})))
+    (om/update! data :selected-element nil)))
 
 (defn mage-li [data owner]
   (reify
@@ -54,25 +54,24 @@
           (get-in data [:mage :class]))))))
 
 (defn element-li
-  [{:keys [element selected-element]} owner]
+  [{:keys [element data]} owner]
   (reify
     om/IRender
     (render [_]
       (dom/li nil
         (dom/label nil
           (dom/input #js {:type "radio" :name "element"
-                          :onChange #(om/update! selected-element element)})
+                          :onChange (fn [_] (om/update! data :selected-element element))})
           (name element))))))
 
-(defn wizard-element [{:keys [selected-mage selected-element]} owner]
+(defn wizard-element [{:keys [selected-mage] :as data} data owner]
   (reify
     om/IRender
     (render [_]
-      (apply dom/ul #js {:className (if-not (= "Wizard" (:class selected-mage)) "hidden")}
-             (om/build-all element-li (map (fn [e se] {:element e
-                                                      :selected-element se})
+      (apply dom/ul #js {:className (if-not (wizard? selected-mage) "hidden")}
+             (om/build-all element-li (map (fn [e se] {:element e :data data})
                                            elements
-                                           (repeat selected-element)))))))
+                                           (repeat data)))))))
 
 (defn mage-stats [{:keys [selected-element selected-mage]} owner]
   (reify om/IRender
@@ -82,15 +81,13 @@
                  (h/row "Spell points:" (:spellpoints selected-mage))
                  (h/row "Training" (:spellpoints selected-mage))))))
 
-(defn mage-view [app owner]
+(defn mage-view [{:keys [mage]} owner]
   (reify
     om/IRender
     (render [_]
-      (let [data (select-keys app [:selected-mage :selected-element])]
-        (dom/div nil
-          (dom/h3 nil "Mage")
-          (apply dom/ul nil (om/build-all mage-li (map #(merge data {:mage %}) mages)))
-          (om/build wizard-element data)
-          (om/build mage-stats data))))))
-
-;; 
+      (dom/div nil
+        (dom/h3 nil "Mage")
+        (apply dom/ul nil
+               (om/build-all mage-li (map (fn [m] {:mage m :data mage}) mages)))
+        (om/build wizard-element mage)
+        (om/build mage-stats mage)))))
