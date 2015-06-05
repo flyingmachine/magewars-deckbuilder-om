@@ -19,6 +19,14 @@ label:hover {
   cursor: pointer;
 }
 
+.fa-exchange, .fa-exchange:hover {
+  text-indent: 0;
+}
+
+.fa-exchange:hover {
+  background: rgba(255,255,255, 0.8);
+}
+
 .selected {
   background: $selected;
 }
@@ -90,10 +98,6 @@ h4 {
     border-bottom: solid emRhythm(4, $ms-up1) transparent;
     border-left: solid emRhythm(8, $ms-up1) transparent;
   }
-}
-
-.fa-exchange:hover {
-  background: rgba(255,255,255, 0.8);
 }
 
 
