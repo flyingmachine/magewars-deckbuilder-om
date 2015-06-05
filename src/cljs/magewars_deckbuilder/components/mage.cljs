@@ -73,15 +73,30 @@
                                            elements
                                            (repeat data)))))))
 
-(defn mage-stats [{:keys [selected-element selected-mage]} owner]
+(defn display-kws
+  [kws]
+  (->> kws
+       (filter identity)
+       sort
+       (map name)
+       (s/join ", ")))
+
+(defn training
+  [selected-mage selected-element]
+  (let [schools (conj (:training selected-mage) selected-element)]
+    (display-kws schools)))
+
+(defn mage-stats [{:keys [mage cards-by-name deck]} owner]
   (reify om/IRender
     (render [_]
-      (dom/table #js {:className (if (empty? selected-mage) "hidden")
-                      :id "mage-stats"}
-                 (h/row "Spell points:" (:spellpoints selected-mage))
-                 (h/row "Training" (:spellpoints selected-mage))))))
+      (let [{:keys [selected-mage selected-element]} mage]
+        (dom/table #js {:className (if (empty? selected-mage) "hidden")
+                        :id "mage-stats"}
+                   (h/row "Spell points:" (:spellpoints selected-mage))
+                   (h/row "Training" (training selected-mage selected-element))
+                   (h/row "Opposition" (display-kws (:opposition selected-mage))))))))
 
-(defn mage-view [{:keys [mage]} owner]
+(defn mage-view [{:keys [mage] :as app} owner]
   (reify
     om/IRender
     (render [_]
@@ -90,4 +105,4 @@
         (apply dom/ul nil
                (om/build-all mage-li (map (fn [m] {:mage m :data mage}) mages)))
         (om/build wizard-element mage)
-        (om/build mage-stats mage)))))
+        (om/build mage-stats app)))))
