@@ -78,7 +78,7 @@ h4, .h4 {
 }
 
 
-.filters {
+#secondary-pane {
   @include span(4 of 16);
   box-sizing: border-box;
   // padding: 1em;
@@ -87,7 +87,7 @@ h4, .h4 {
   overflow-y: auto;
 }
 
-.cards {
+#cards {
   box-sizing: border-box;
   // padding: 1em;
   position: fixed;

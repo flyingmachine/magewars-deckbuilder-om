@@ -7,7 +7,8 @@
             [magewars-deckbuilder.filtering :as f]
             [magewars-deckbuilder.components.card-list :as cl]
             [magewars-deckbuilder.components.filter-selection :as fs]
-            [magewars-deckbuilder.components.selected-card :as sc]))
+            [magewars-deckbuilder.components.selected-card :as sc]
+            [magewars-deckbuilder.components.wizard :as w]))
 
 (enable-console-print!)
 
@@ -34,6 +35,8 @@
     (om/root fs/filter-list app-state
              {:target (.getElementById js/document "filters")
               :shared {:toggle-filter (chan)}})
+    (om/root w/wizard-view app-state
+             {:target (.getElementById js/document "wizard")})
     (om/root cl/all-cards-view app-state
              {:target (.getElementById js/document "cards")})
     (om/root sc/selected-card-view app-state

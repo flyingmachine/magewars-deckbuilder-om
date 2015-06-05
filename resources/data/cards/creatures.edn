@@ -2,7 +2,7 @@
 #{{:name "Adramelech, Lord of Fire"
    :subtypes #{:demon}
    :casting-cost 24
-   :school [[:dark 4] [:flame 2]]
+   :school [[:dark 4] [:fire 2]]
    :armor 3
    :life 14
    :traits #{:flying [:immunity :flame] :legendary}
