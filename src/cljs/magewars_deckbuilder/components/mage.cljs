@@ -124,11 +124,11 @@
                     (sort-by first (:counts deck)))))))
 
 (defn download
-  [{:keys [mage deck]}]
+  [{:keys [mage-selection deck]}]
   (set! (.-location js/document)
         (str "data:Application/octet-stream,"
-             (download-view (:selected-mage mage)
-                            (:selected-element mage)
+             (download-view (:selected-mage mage-selection)
+                            (:selected-element mage-selection)
                             deck))))
 
 (defn mage-view [{:keys [mage-selection mages] :as app} owner]
