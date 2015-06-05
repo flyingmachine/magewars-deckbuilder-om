@@ -23,6 +23,15 @@ label:hover {
   cursor: pointer;
 }
 
+#mage label:hover {
+  text-indent: 0;
+}
+
+.fa-exchange {
+  background: rgba(255,255,255, 0);
+  transition: 0.1s all;
+}
+
 .fa-exchange, .fa-exchange:hover {
   text-indent: 0;
 }
