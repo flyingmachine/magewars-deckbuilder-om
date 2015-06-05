@@ -4,41 +4,12 @@
             [magewars-deckbuilder.components.helpers :as h]
             [clojure.string :as s]))
 
-(def mages
-  [{:class "Beastmaster"
-    :spellpoints 120
-    :life 36
-    :armor 0
-    :channeling 9
-    :training #{:nature}
-    :opposition #{:fire}}
-   {:class "Priestess"
-    :spellpoints 120
-    :life 32
-    :armor 0
-    :channeling 10
-    :training #{:holy}
-    :opposition #{:dark}}
-   {:class "Warlock"
-    :spellpoints 120
-    :life 38
-    :armor 0
-    :channeling 9
-    :training #{:dark :fire}
-    :opposition #{:holy}}
-   {:class "Wizard"
-    :spellpoints 120
-    :life 32
-    :armor 0
-    :channeling 10
-    :training #{:arcane}
-    :opposition #{}}])
-
 (def elements [:fire :earth :air :water])
 (defn wizard? [x] (= "Wizard" (:class x)))
 
 (defn select-mage
   [{:keys [mage data]}]
+  (println mage)
   (om/update! data :selected-mage mage)
   (when-not (wizard? mage)
     (om/update! data :selected-element nil)))
@@ -119,9 +90,9 @@
   (reify om/IRender
     (render [_]
       (let [{:keys [selected-mage selected-element]} mage]
-        (dom/table #js {:className (if (empty? selected-mage) "hidden")
+        (dom/table #js {:className (if (empty? selected-mage) "disabled")
                         :id "mage-stats"}
-                   (h/row "Spell points:" (str (used-spellpoints selected-mage selected-element cards-by-name deck)
+                   (h/row "Spell points" (str (used-spellpoints selected-mage selected-element cards-by-name deck)
                                                "/"
                                                (:spellpoints selected-mage)))
                    (h/row "Training" (training selected-mage selected-element))
@@ -135,7 +106,7 @@
         "\nCards:\n"
         (apply str
                (map (fn [[name c]]
-                      (str name " " c "\n"))
+                      (str c " " name "\n"))
                     (sort-by first (:counts deck)))))))
 
 (defn download
@@ -146,15 +117,15 @@
                             (:selected-element mage)
                             deck))))
 
-(defn mage-view [{:keys [mage] :as app} owner]
+(defn mage-view [{:keys [mage-selection mages] :as app} owner]
   (reify
     om/IRender
     (render [_]
       (dom/div nil
         (dom/h3 nil "Mage")
         (apply dom/ul nil
-               (om/build-all mage-li (map (fn [m] {:mage m :data mage}) mages)))
-        (om/build wizard-element mage)
+               (om/build-all mage-li (map (fn [m] {:mage m :data mage-selection}) mages)))
+        (om/build wizard-element mage-selection)
         (om/build mage-stats app)
         (dom/button #js {:onClick (fn [_] (download app))
                          :download "mage"}

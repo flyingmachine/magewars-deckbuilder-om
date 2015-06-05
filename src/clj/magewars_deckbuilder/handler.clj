@@ -5,14 +5,16 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.response :as resp]
-            [magewars-deckbuilder.cards :as cards]))
+            [magewars-deckbuilder.cards :as cards]
+            [magewars-deckbuilder.mages :as mages]))
 
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
                   (resp/content-type "text/html")))
-  (GET "/cards" []
+  (GET "/data" []
        (fn [req]
-         (-> (resp/response (str (cards/cards :core)))
+         (-> (resp/response (str {:cards (cards/cards :core)
+                                  :mages mages/all}))
              (resp/content-type "text/plain"))))
   (route/not-found "Not Found"))
 

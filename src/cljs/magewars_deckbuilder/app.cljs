@@ -14,16 +14,16 @@
 
 (def app-state
   (atom {:selected-filters (f/empty-filters f/attribute-filter-types)
-         :mage {:selected-mage nil
-                :selected-element nil}}))
+         :mage-selection {:selected-mage nil
+                          :selected-element nil}}))
 
 (edn-xhr
  {:method :get
-  :url "/cards"
+  :url "/data"
   :on-complete
   (fn [cards]
     (swap! app-state
-           (fn [state cards]
+           (fn [state {:keys [cards mages]}]
              (let [cindex (f/card-index cards)]
                (merge state {:cards cards
                              :cards-by-name (into {} (map (juxt :name identity) cards))
@@ -31,7 +31,8 @@
                              :deck {:title "Deck"
                                     :counts {}}
                              :pool {:title "Pool"
-                                    :counts (into {} (map (juxt :name :count) cards))}})))
+                                    :counts (into {} (map (juxt :name :count) cards))}
+                             :mages mages})))
            cards)
 
     (om/root fs/filter-list app-state
