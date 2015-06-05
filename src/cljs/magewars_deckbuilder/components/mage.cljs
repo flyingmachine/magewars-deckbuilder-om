@@ -90,9 +90,27 @@
   [selected-mage selected-element]
   (display-kws (training-list selected-mage selected-element)))
 
+;; TODO make more elegant?
+(defn spellpoints
+  [training opposition card]
+  (let [school (get-in card [:display :school])
+        school (if (keyword? (first school)) [school] school)]
+    (reduce (fn [sum [school cost]]
+              (+ sum
+                 (cond (contains? training school) cost
+                       (contains? opposition school) (* 3 cost)
+                       :else (* 2 cost))))
+            0
+            school)))
+
 (defn used-spellpoints
   [mage element cards-by-name deck]
-  (let [training (filter )]))
+  (let [training (training-list mage element)
+        opposition (:opposition mage)]
+    (reduce (fn [sum [name c]]
+              (+ sum (* c (spellpoints training opposition (get cards-by-name name)))))
+            0 
+            (:counts deck))))
 
 (defn mage-stats [{:keys [mage cards-by-name deck]} owner]
   (reify om/IRender
@@ -100,7 +118,9 @@
       (let [{:keys [selected-mage selected-element]} mage]
         (dom/table #js {:className (if (empty? selected-mage) "hidden")
                         :id "mage-stats"}
-                   (h/row "Spell points:" (:spellpoints selected-mage))
+                   (h/row "Spell points:" (str (used-spellpoints selected-mage selected-element cards-by-name deck)
+                                               "/"
+                                               (:spellpoints selected-mage)))
                    (h/row "Training" (training selected-mage selected-element))
                    (h/row "Opposition" (display-kws (:opposition selected-mage))))))))
 
