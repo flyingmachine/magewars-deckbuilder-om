@@ -4,7 +4,6 @@
  :dependencies '[[adzerk/boot-cljs      "0.0-2814-4"]
                  [adzerk/boot-cljs-repl "0.1.10-SNAPSHOT" :scope "test"]
                  [adzerk/boot-reload    "0.2.6"           :scope "test"]
-                 [cljsjs/boot-cljsjs     "0.4.7"      :scope "test"]
                  [environ               "1.0.0"]
                  [danielsz/boot-environ "0.0.1"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
@@ -23,6 +22,7 @@
                  [org.omcljs/om "0.8.8"]
                  [om-sync "0.1.1"]
                  [cljs-ajax "0.3.11"]
+                 [cljsjs/markdown "0.6.0-beta1-0"]
                  [cljsjs/react-with-addons "0.13.1-0"]
                  [boot-sassc "0.1.2"]])
 
@@ -30,7 +30,6 @@
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
- '[cljsjs.boot-cljsjs    :refer [from-cljsjs]]
  '[reloaded.repl         :refer [init start stop go reset]]
  '[magewars-deckbuilder.systems :refer [dev-system]]
  '[mathias.boot-sassc    :refer [sass]]
@@ -49,6 +48,5 @@
         (sass :sass-file "main.scss" :output-dir "stylesheets")
         (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
         (reload)
-        (from-cljsjs)
         (cljs :compiler-options {:output-to "main.js" :source-map "main.js.map"})
         (repl :server true)))

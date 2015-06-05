@@ -1,6 +1,7 @@
 (ns magewars-deckbuilder.components.selected-card
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
+            [cljsjs.markdown]
             [clojure.string :as s]))
 
 (defprotocol CardDetails
@@ -38,6 +39,12 @@
     (dom/td nil x)
     (dom/td nil y)))
 
+(defn description
+  [x]
+  (dom/tr nil
+    (dom/td nil "Description")
+    (dom/td #js {:dangerouslySetInnerHTML #js {:__html (.toHTML js/markdown x)}})))
+
 (defn card-details
   [c]
   (dom/table nil
@@ -47,7 +54,7 @@
     (row "Casting Cost" (:casting-cost c))
     (row "Speed" (name (:speed c)))
     (row "Targets" (s/join "; " (map target (:targets c))))
-    (row "Description" (:description c))))
+    (description (:description c))))
 
 (defn selected-card-view [{:keys [selected-card cards-by-name]} owner]
   (reify

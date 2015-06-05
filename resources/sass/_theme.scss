@@ -10,6 +10,10 @@ label {
   transition: 0.25s all;
 }
 
+p {
+  texet-align: left;
+}
+
 label:hover {
   background: $hover;
   position: relative;
