@@ -124,6 +124,25 @@
                    (h/row "Training" (training selected-mage selected-element))
                    (h/row "Opposition" (display-kws (:opposition selected-mage))))))))
 
+(defn download-view [mage element deck]
+  (println deck)
+  (js/encodeURIComponent
+   (str "Mage: " (:class mage) "\n"
+        (if element (str "Element: " (name element) "\n"))
+        "\nCards:\n"
+        (apply str
+               (map (fn [[name c]]
+                      (str name " " c "\n"))
+                    (sort-by first (:counts deck)))))))
+
+(defn download
+  [{:keys [mage deck]}]
+  (set! (.-location js/document)
+        (str "data:Application/octet-stream,"
+             (download-view (:selected-mage mage)
+                            (:selected-element mage)
+                            deck))))
+
 (defn mage-view [{:keys [mage] :as app} owner]
   (reify
     om/IRender
@@ -133,4 +152,7 @@
         (apply dom/ul nil
                (om/build-all mage-li (map (fn [m] {:mage m :data mage}) mages)))
         (om/build wizard-element mage)
-        (om/build mage-stats app)))))
+        (om/build mage-stats app)
+        (dom/button #js {:onClick (fn [_] (download app))
+                         :download "mage"}
+                    "Download")))))

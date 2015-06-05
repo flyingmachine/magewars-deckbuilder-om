@@ -151,6 +151,11 @@ td {
   padding-right: emRhythm(2);
 }
 
+#mage button {
+  margin: 0 emRhythm(2) emRhythm(4);
+  display: block;
+}
+
 #mage-stats {
-  margin: emRhythm(4) emRhythm(2);
+  margin: emRhythm(4) emRhythm(2) 0;
 }
