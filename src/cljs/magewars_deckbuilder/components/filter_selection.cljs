@@ -135,7 +135,8 @@
             filter-attributes (foptions f/filter-attributes-ordered cards)]
         (dom/div nil
           (dom/h3 nil "Filters"
-                  (dom/button #js {:onClick #(om/update! selected-filters (f/empty-filters f/attribute-filter-types))}
+                  (dom/button #js {:disabled (every? empty? (map second selected-filters))
+                                   :onClick #(om/update! selected-filters (f/empty-filters f/attribute-filter-types))}
                               "clear"))
           (apply dom/div nil
                  (map (fn [[attr vals]]

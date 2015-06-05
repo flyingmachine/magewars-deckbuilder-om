@@ -108,7 +108,8 @@
                      (h/row "Training" (training selected-mage selected-element))
                      (h/row "Opposition" (display-kws (:opposition selected-mage))))
           (dom/div nil
-            (dom/button #js {:onClick #(load-default selected-mage deck pool)}
+            (dom/button #js {:onClick #(load-default selected-mage deck pool)
+                             :disabled (not selected-mage)}
                         (str "Load default " (:class selected-mage) " deck"))))))))
 
 (defn download-view [mage element deck]
