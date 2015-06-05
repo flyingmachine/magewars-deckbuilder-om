@@ -1,0 +1,59 @@
+{:class "Warlock"
+ :spellpoints 120
+ :life 38
+ :armor 0
+ :channeling 9
+ :training #{:dark :fire}
+ :opposition #{:holy}
+ :default-deck
+ {"Demonhide Armor" 1
+  "Elemental Wand" 1
+  "Fireshaper Ring" 1
+  "Helm of Fear" 1
+  "Lash of Hellfire" 1
+  "Leather Gloves" 1
+  "Moloch’s Torment" 1
+  "Ring of Curses" 1
+
+  "Battleforge" 1
+  "Mana Crystal" 2
+  "Pentagram" 1
+  "Wall of Fire" 2
+
+  "Adramelech, Lord of Fire" 1
+  "Darkfenne Bat" 2
+  "Darkpact Slayer" 2
+  "Firebrand Imp" 2
+  "Flaming Hellion" 2
+  "Goran, Werewolf Pet" 1
+  "Malacoda" 1
+  "Necropian Vampiress" 1
+  "Skeletal Sentry" 2
+
+  "Agony" 1
+  "Bear Strength" 1
+  "Chains of Agony" 1
+  "Death Link" 1
+  "Enfeeble" 2
+  "Force Orb" 1
+  "Ghoul Rot" 2
+  "Hellfire Trap" 1
+  "Magebane" 1
+  "Maim Wings" 1
+  "Marked for Death" 1
+  "Poisoned Blood" 1
+  "Vampirism" 1
+
+  "Dispel" 1
+  "Drain Life" 1
+  "Evade" 1
+  "Explode" 2
+  "Force Push" 1
+  "Seeking Dispel" 1
+  "Teleport" 1
+  "Vampiric Strike" 2
+
+  "Fireball" 2
+  "Firestorm" 1
+  "Flameblast" 2
+  "Ring of Fire" 1}}

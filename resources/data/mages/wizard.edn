@@ -1,0 +1,58 @@
+{:class "Wizard"
+ :spellpoints 120
+ :life 32
+ :armor 0
+ :channeling 10
+ :training #{:arcane}
+ :opposition #{}
+ :default-deck
+ {"Arcane Ring" 1
+  "Dragonscale Hauberk" 1
+  "Elemental Wand" 1
+  "Leather Boots" 1
+  "Mage Wand" 1
+  "Moonglow Amulet" 1
+  "Staff of the Arcanum" 1
+  "Suppression Cloak" 1
+  
+  "Mana Crystal" 2
+  "Mana Siphon" 1
+  "Poison Gas Cloud" 2
+
+  "Blue Gremlin" 2
+  "Darkfenne Hydra" 1
+  "Gorgon Archer" 1
+  "Huginn, Raven Familiar" 1
+  "Mana Leech" 2
+  "Moonglow Faerie" 1
+  "Stonegaze Basilisk" 1
+
+  "Block" 1
+  "Circle of Lightning" 1
+  "Decoy" 2
+  "Essence Drain" 2
+  "Force Hold" 1
+  "Force Sword" 1
+  "Harmonize" 1
+  "Jinx" 1
+  "Nullify" 2
+  "Reverse Attack" 1
+  "Reverse Magic" 1
+  "Teleport Trap" 1
+
+  "Banish" 1
+  "Dispel" 1
+  "Dissolve" 2
+  "Drain Power" 1
+  "Minor Heal" 2
+  "Purge Magic" 1
+  "Seeking Dispel" 2
+  "Sleep" 1
+  "Steal Enchantment" 1
+  "Teleport" 2
+
+  "Chain Lightning" 1
+  "Electrify" 1
+  "Jet Stream" 2
+  "Lightning Bolt" 3
+  "Thunderbolt" 1}}

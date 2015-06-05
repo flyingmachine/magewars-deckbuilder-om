@@ -1,0 +1,57 @@
+{:class "Priestess"
+ :spellpoints 120
+ :life 32
+ :armor 0
+ :channeling 10
+ :training #{:holy}
+ :opposition #{:dark}
+ :default-deck
+ {"Crown of Protection" 1
+  "Dawnbreaker Ring" 1
+  "Deflection Bracers" 1
+  "Ivarium Longbow" 1
+  "Mage Wand" 1
+  "Moonglow Amulet" 1
+  "Ring of Asyra" 1
+  "Staff of Asyra" 1
+  "Wind Wyvern Hide" 1
+
+  "Hand of Bim-Shalla" 1
+  "Mana Flower" 2
+  "Temple of Asyra" 1
+
+  "Asyran Cleric" 3
+  "Brogan Bloodstone" 1
+  "Gray Angel" 1
+  "Highland Unicorn" 1
+  "Knight of Westlock" 2
+  "Royal Archer" 2
+  "Valshalla, Lightning Angel" 1
+
+  "Block" 2
+  "Bull Endurance" 1
+  "Divine Intervention" 1
+  "Divine Protection" 2
+  "Hawkeye" 1
+  "Nullify" 1
+  "Pacify" 2
+  "Regrowth" 1
+  "Retaliate" 1
+  "Rhino Hide" 1
+  "Sacred Ground" 1
+
+  "Dispel" 1
+  "Dissolve" 2
+  "Force Push" 1
+  "Group Heal" 1
+  "Heal" 2
+  "Lay Hands" 1
+  "Minor Heal" 1
+  "Perfect Strike" 1
+  "Purge Magic" 1
+  "Purify" 1
+  "Resurrection" 1
+  "Sleep" 1
+
+  "Blinding Flash" 1
+  "Pillar of Light" 2}}

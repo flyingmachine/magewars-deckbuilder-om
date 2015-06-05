@@ -1,0 +1,64 @@
+{:class "Beastmaster"
+ :spellpoints 120
+ :life 36
+ :armor 0
+ :channeling 9
+ :training #{:nature}
+ :opposition #{:fire}
+ :default-deck
+ {"Bearskin Armor" 1
+  "Elemental Cloak" 1
+  "Mage Wand" 1
+  "Regrowth Belt" 1
+  "Ring of Beasts" 1
+  "Staff of Beasts" 1
+
+  "Lair" 1
+  "Mana Flower" 3
+  "Mohktari" 1
+  "Rajan’s Fury" 1
+  "Tanglevine" 3
+  "Tooth & Nail" 1
+  "Wall of Thorns" 2
+
+  "Bitterwood Fox" 3
+  "Cervere, The Forest Shadow" 1
+  "Emerald Tegu" 1
+  "Feral Bobcat" 2
+  "Mountain Gorilla" 1
+  "Redclaw, Alpha Male" 1
+  "Sosruko, Ferret Companion" 1
+  "Steelclaw Grizzly" 1
+  "Thunderift Falcon" 2
+  "Timber Wolf" 3
+
+  "Bear Strength" 2
+  "Block" 1
+  "Bull Endurance" 1
+  "Cheetah Speed" 1
+  "Cobra Reflexes" 1
+  "Eagle Wings" 1
+  "Marked for Death" 1
+  "Mongoose Agility" 1
+  "Nullify" 1
+  "Regrowth" 1
+  "Retaliate" 1
+  "Rhino Hide" 2
+
+  "Battle Fury" 1
+  "Call of the Wild" 2
+  "Charge" 1
+  "Dispel" 2
+  "Dissolve" 1
+  "Force Push" 1
+  "Group Heal" 1
+  "Heal" 1
+  "Knockdown" 1
+  "Minor Heal" 2
+  "Piercing Strike" 1
+  "Perfect Strike" 1
+  "Rouse the Beast" 1
+  "Shift Enchantment" 1
+
+  "Geyser" 2
+  "Jet Stream" 1}}
