@@ -73,18 +73,15 @@
                  (h/row "Spell points:" (:spellpoints selected-mage))
                  (h/row "Training" (:spellpoints selected-mage))))))
 
-(defn mage-view [{:keys [selected-mage] :as app} owner]
+(defn mage-view [app owner]
   (reify
     om/IRender
     (render [_]
-      (let [mage (select-keys app [:selected-mage :selected-element])]
+      (let [data (select-keys app [:selected-mage :selected-element])]
         (dom/div nil
           (dom/h3 nil "Mage")
-          (apply dom/ul nil (om/build-all mage-li (map (fn [m sm] {:mage m
-                                                                  :selected-mage sm})
-                                                       mages
-                                                       (repeat selected-mage))))
-          (om/build wizard-element mage)
-          (om/build mage-stats mage))))))
+          (apply dom/ul nil (om/build-all mage-li (map #(merge data {:mage %}) mages)))
+          (om/build wizard-element data)
+          (om/build mage-stats data))))))
 
 ;; 
