@@ -73,18 +73,26 @@
                                            elements
                                            (repeat data)))))))
 
+(defn training-list
+  [mage element]
+  (if element
+    (conj (:training mage) element)
+    (:training mage)))
+
 (defn display-kws
   [kws]
   (->> kws
-       (filter identity)
        sort
        (map name)
        (s/join ", ")))
 
 (defn training
   [selected-mage selected-element]
-  (let [schools (conj (:training selected-mage) selected-element)]
-    (display-kws schools)))
+  (display-kws (training-list selected-mage selected-element)))
+
+(defn used-spellpoints
+  [mage element cards-by-name deck]
+  (let [training (filter )]))
 
 (defn mage-stats [{:keys [mage cards-by-name deck]} owner]
   (reify om/IRender
