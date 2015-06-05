@@ -1,6 +1,7 @@
 (ns magewars-deckbuilder.components.mage
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
+            [magewars-deckbuilder.components.helpers :as h]
             [clojure.string :as s]))
 
 (def mages
@@ -34,6 +35,11 @@
     :opposition #{}}])
 
 (def elements [:fire :earth :air :water])
+(defn wizard? [x] (= "Wizard" (:class x)))
+
+(defn select-mage
+  [mage select-mage]
+  (om/update! select-mage mage))
 
 (defn mage-li [{:keys [mage selected-mage]} owner]
   (reify
@@ -59,16 +65,26 @@
       (apply dom/ul #js {:className (if-not (= "Wizard" (:class selected-mage)) "hidden")}
              (map element-li elements (repeat selected-element))))))
 
+(defn mage-stats [{:keys [selected-element selected-mage]} owner]
+  (reify om/IRender
+    (render [_]
+      (dom/table #js {:className (if (empty? selected-mage) "hidden")
+                      :id "mage-stats"}
+                 (h/row "Spell points:" (:spellpoints selected-mage))
+                 (h/row "Training" (:spellpoints selected-mage))))))
+
 (defn mage-view [{:keys [selected-mage] :as app} owner]
   (reify
     om/IRender
     (render [_]
-      (dom/div nil
-        (dom/h3 nil "Mage")
-        (apply dom/ul nil (om/build-all mage-li (map (fn [m sm] {:mage m
-                                                                :selected-mage sm})
-                                                     mages
-                                                     (repeat selected-mage))))
-        (om/build wizard-element (select-keys app [:selected-mage :selected-element]))))))
+      (let [mage (select-keys app [:selected-mage :selected-element])]
+        (dom/div nil
+          (dom/h3 nil "Mage")
+          (apply dom/ul nil (om/build-all mage-li (map (fn [m sm] {:mage m
+                                                                  :selected-mage sm})
+                                                       mages
+                                                       (repeat selected-mage))))
+          (om/build wizard-element mage)
+          (om/build mage-stats mage))))))
 
 ;; 
