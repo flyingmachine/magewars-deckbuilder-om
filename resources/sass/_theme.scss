@@ -122,6 +122,9 @@ h4 {
 }
 
 #selected-card {
+  img {
+    border-radius: 8px;
+  }
   &:before {
     display: block;
     position: fixed;
