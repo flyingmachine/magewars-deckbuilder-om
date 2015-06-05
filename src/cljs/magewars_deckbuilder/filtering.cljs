@@ -28,7 +28,7 @@
 (def filter-attributes-ordered
   (into {}
         (map-indexed #(vector %2 %1)
-                     [:type :subtypes :school :level
+                     [:school :type :subtypes :level
                       :targets :secondary-targets :range
                       :casting-cost :effects :traits
                       :speed :armor :life :channeling :defenses

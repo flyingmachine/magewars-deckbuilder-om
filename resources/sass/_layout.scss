@@ -159,3 +159,10 @@ td {
 #mage-stats {
   margin: emRhythm(4) emRhythm(2) 0;
 }
+
+#filters button {
+  position: absolute;
+  top: emRhythm(4);
+  right: emRhythm(2);
+  z-index: 1;
+}

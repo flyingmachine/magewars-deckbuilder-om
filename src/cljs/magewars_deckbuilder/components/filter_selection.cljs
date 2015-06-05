@@ -134,7 +134,9 @@
       (let [facet-counts (f/filter-facet-counts cards cindex selected-filters)
             filter-attributes (foptions f/filter-attributes-ordered cards)]
         (dom/div nil
-          (dom/h3 nil "Filters")
+          (dom/h3 nil "Filters"
+                  (dom/button #js {:onClick #(om/update! selected-filters (f/empty-filters f/attribute-filter-types))}
+                              "clear"))
           (apply dom/div nil
                  (map (fn [[attr vals]]
                         (om/build filter-attribute-view

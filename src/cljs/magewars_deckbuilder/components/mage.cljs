@@ -54,13 +54,15 @@
           (get-in data [:mage :class]))))))
 
 (defn element-li
-  [{:keys [element data]} owner]
+  [{:keys [element data wizard]} owner]
   (reify
     om/IRender
     (render [_]
       (dom/li nil
         (dom/label nil
           (dom/input #js {:type "radio" :name "element"
+                          :disabled (not wizard)
+                          :checked (= (:selected-element data) element)
                           :onChange (fn [_] (om/update! data :selected-element element))})
           (name element))))))
 
@@ -68,10 +70,11 @@
   (reify
     om/IRender
     (render [_]
-      (apply dom/ul #js {:className (if-not (wizard? selected-mage) "hidden")}
-             (om/build-all element-li (map (fn [e se] {:element e :data data})
-                                           elements
-                                           (repeat data)))))))
+      (let [wizard (wizard? selected-mage)]
+        (apply dom/ul #js {:className (if-not wizard "disabled")}
+               (om/build-all element-li (map (fn [e se] {:element e :data data :wizard wizard})
+                                             elements
+                                             (repeat data))))))))
 
 (defn training-list
   [mage element]
