@@ -9,7 +9,6 @@
 
 (defn select-mage
   [{:keys [mage data]}]
-  (println mage)
   (om/update! data :selected-mage mage)
   (when-not (wizard? mage)
     (om/update! data :selected-element nil)))
@@ -86,17 +85,31 @@
             0 
             (:counts deck))))
 
-(defn mage-stats [{:keys [mage cards-by-name deck]} owner]
+(defn load-default
+  [mage deck pool]
+  (om/transact! pool :counts #(merge-with + % (:counts deck)))
+  (om/update! deck :counts (:default-deck mage))
+  (om/transact! pool :counts
+                (fn [c]
+                  (->> (merge-with - c (:default-deck mage))
+                       (filter #(> (second %) 0))
+                       (into {})))))
+
+(defn mage-stats [{:keys [mage-selection cards-by-name deck pool]} owner]
   (reify om/IRender
     (render [_]
-      (let [{:keys [selected-mage selected-element]} mage]
-        (dom/table #js {:className (if (empty? selected-mage) "disabled")
-                        :id "mage-stats"}
-                   (h/row "Spell points" (str (used-spellpoints selected-mage selected-element cards-by-name deck)
-                                               "/"
-                                               (:spellpoints selected-mage)))
-                   (h/row "Training" (training selected-mage selected-element))
-                   (h/row "Opposition" (display-kws (:opposition selected-mage))))))))
+      (let [{:keys [selected-mage selected-element]} mage-selection]
+        (dom/div nil
+          (dom/table #js {:className (if (empty? selected-mage) "disabled")
+                          :id "mage-stats"}
+                     (h/row "Spell points" (str (used-spellpoints selected-mage selected-element cards-by-name deck)
+                                                "/"
+                                                (:spellpoints selected-mage)))
+                     (h/row "Training" (training selected-mage selected-element))
+                     (h/row "Opposition" (display-kws (:opposition selected-mage))))
+          (dom/div nil
+            (dom/button #js {:onClick #(load-default selected-mage deck pool)}
+                        (str "Load default " (:class selected-mage) " deck"))))))))
 
 (defn download-view [mage element deck]
   (println deck)
