@@ -27,13 +27,16 @@
                  [boot-sassc "0.1.2"]])
 
 (require
+ '[boot.core             :as c]
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
  '[reloaded.repl         :refer [init start stop go reset]]
  '[magewars-deckbuilder.systems :refer [dev-system]]
  '[mathias.boot-sassc    :refer [sass]]
- '[system.boot           :refer [system]])
+ '[system.boot           :refer [system]]
+ '[magewars-deckbuilder.cards   :as cards]
+ '[magewars-deckbuilder.mages   :as mages])
 
 (deftask environ [e env FOO=BAR {kw edn} "The environment map"]
   (with-pre-wrap fileset
@@ -50,3 +53,8 @@
         (reload)
         (cljs :compiler-options {:output-to "main.js" :source-map "main.js.map"})
         (repl :server true)))
+
+(deftask write-data
+  "Write data to filesystem"
+  []
+  )
