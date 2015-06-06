@@ -34,10 +34,13 @@
   (sort-by #(get filter-attributes (first %))
            (f/filter-options cards)))
 
+;; TODO this is cra zay
 (defn prepare-vals
   [attr vals vset-parent facet-counts selected-filters]
-  (sort-by
-   (comp str :val)
+  (sort-by :val (fn [x y]
+                  (if (not= (type x) (type y))
+                    (compare (str x) (str y))
+                    (compare x y)))
    (cond
      ;; vset roots
      (and (vset? attr) (not vset-parent))
