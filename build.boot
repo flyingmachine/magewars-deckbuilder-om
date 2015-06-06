@@ -19,7 +19,7 @@
                  [compojure             "1.3.3"]
 
                  ;; client
-                 [org.omcljs/om "0.8.8"]
+                 [org.omcljs/om "0.8.8" :exclusions [cljsjs/react]]
                  [om-sync "0.1.1"]
                  [cljs-ajax "0.3.11"]
                  [cljsjs/markdown "0.6.0-beta1-0"]
@@ -51,8 +51,16 @@
         (sass :sass-file "main.scss" :output-dir "stylesheets")
         (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
         (reload)
-        (cljs :compiler-options {:output-to "main.js" :source-map "main.js.map"})
+        (cljs :compiler-options {:output-to "main.js"}
+              :source-map)
         (repl :server true)))
+
+(deftask build
+  "Build for prod"
+  []
+  (comp (sass :sass-file "main.scss" :output-dir "stylesheets")
+        (cljs :compiler-options {:output-to "main.js"}
+              :optimizations :advanced)))
 
 (deftask write-data
   "Write data to filesystem"
