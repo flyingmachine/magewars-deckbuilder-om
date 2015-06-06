@@ -100,16 +100,16 @@
    :description "Target gains the Elusive trait until the end of the round."
    :image "MW1I10.jpg"}
   {:name "Explode"
-   :subtypes #{:flame}
+   :subtypes #{:fire}
    :casting-cost -1
    :speed :quick
    :range [0 1]
    :targets #{[:creature :mage]}
    :secondary-targets #{:equipment}
-   :school [:flame 2]
+   :school [:fire 2]
    :traits #{:destroy :attack}
    :attacks #{{:dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[:burn 6 12]}
                :traits #{:unavoidable :defrost}}}
    :description "When you cast Explode, choose an equipment object attached to the target Mage. **X = 6 +** the equipment's casting cost. Destroy the chosen equipment. Then, Expode makes the above *flame* attack against the target Mage."

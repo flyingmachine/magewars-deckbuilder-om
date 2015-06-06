@@ -38,38 +38,38 @@
    :description "Attacks all objects in the zone except the caster"
    :image "MW1A03.jpg"}
   {:name "Flameblast"
-   :subtypes #{:flame}
+   :subtypes #{:fire}
    :casting-cost 5
    :range [0 1]
    :targets #{:creature :conjuration}
-   :school [:flame 1]
+   :school [:fire 1]
    :dice 4
-   :damage-type :flame
+   :damage-type :fire
    :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
    :traits #{:defrost :unavoidable}
    :description ""
    :image "MW1A04.jpg"}
   {:name "Fireball"
-   :subtypes #{:flame}
+   :subtypes #{:fire}
    :casting-cost 8
    :range [0 2]
    :targets #{:creature :conjuration}
-   :school [:flame 2]
+   :school [:fire 2]
    :dice 6
-   :damage-type :flame
+   :damage-type :fire
    :effects #{[[:burn 1] 4 10] [[:burn 2] 11 12]}
    :traits #{:defrost}
    :description ""
    :image "MW1A05.jpg"}
   {:name "Firestorm"
-   :subtypes #{:flame}
+   :subtypes #{:fire}
    :casting-cost 11
    :action :slow
    :range [0 1]
    :targets #{:zone}
-   :school [:flame 3]
+   :school [:fire 3]
    :dice 5
-   :damage-type :flame
+   :damage-type :fire
    :effects #{[[:burn 1] 4 10] [[:burn 2] 11 12]}
    :traits #{:defrost :unavoidable}
    :description ""
@@ -123,14 +123,14 @@
    :description ""
    :image "MW1A11.jpg"}
   {:name "Ring of Fire"
-   :subtypes #{:flame}
+   :subtypes #{:fire}
    :casting-cost 9
    :action :slow
    :range [0 0]
    :targets #{:zone}
-   :school [:flame 2]
+   :school [:fire 2]
    :dice 5
-   :damage-type :flame
+   :damage-type :fire
    :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
    :traits #{:unavoidable :defrost}
    :description "Attacks all objects in the zone except the caster."

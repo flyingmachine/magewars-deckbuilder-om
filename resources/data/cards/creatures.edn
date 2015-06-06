@@ -5,17 +5,17 @@
    :school [[:dark 4] [:fire 2]]
    :armor 3
    :life 14
-   :traits #{:flying [:immunity :flame] :legendary}
+   :traits #{:flying [:immunity :fire] :legendary}
    :attacks #{{:name "Hellfire Scythe"
                :dice 6
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 5 9] [[:burn 2] 10 12]}
                :traits #{:defrost}
                :ranged-melee :melee
                :speed :quick}
               {:name "Hellfire Sweep"
                :dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
                :traits #{:defrost :sweeping}
                :ranged-melee :melee
@@ -160,7 +160,7 @@
    :school [:dark 3]
    :armor 2
    :life 13
-   :traits #{[:flame -2]}
+   :traits #{[:fire -2]}
    :attacks #{{:name "Hellsword"
                :dice 4
                :damage-type nil
@@ -229,10 +229,10 @@
    :school [:dark 1]
    :armor 0
    :life 6
-   :traits #{[:immunity :flame]}
+   :traits #{[:immunity :fire]}
    :attacks #{{:name "Hellfire Claws"
                :dice 2
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 8 12]}
                :traits #{:defrost}
                :ranged-melee :melee
@@ -245,10 +245,10 @@
    :school [:dark 3]
    :armor 2
    :life 9
-   :traits #{[:immunity :flame]}
+   :traits #{[:immunity :fire]}
    :attacks #{{:name "Flameblast"
                :dice 3
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 5 9] [[:burn 2] 10 12]}
                :traits #{:defrost}
                :ranged-melee :ranged
@@ -256,7 +256,7 @@
                :speed :slow}
               {:name "Hell Trident"
                :dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
                :traits #{:defrost}
                :ranged-melee :melee

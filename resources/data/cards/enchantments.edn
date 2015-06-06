@@ -264,7 +264,7 @@
    :description "This creature gains the **Ranged +1** trait."
    :image "MW1E21.jpg"}
   {:name "Hellfire Trap"
-   :subtypes #{:trap :flame}
+   :subtypes #{:trap :fire}
    :casting-cost 2
    :reveal-cost 2
    :speed :quick
@@ -275,7 +275,7 @@
    :effects #{}
    :traits #{:mandatory :attack}
    :attacks #{{:dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 5 8] [[:burn 2] 9 12]}
                :traits #{:unavoidable :defrost}}}
    :description "Hellfire Trap can only target a zone without enemy creatures. When an enemy creature enters the zone, you **must** reveal Hellfire Trap. Hellfire Trap immediately attacks that creature. Then, destroy Hellfire Trap."

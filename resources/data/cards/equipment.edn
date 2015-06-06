@@ -65,18 +65,18 @@
   {:name "Dragonscale Hauberk"
    :subtypes #{}
    :casting-cost 6
-   :school [:flame 1]
+   :school [:fire 1]
    :slots #{:chest}
-   :effects #{[:armor 2] [:flame -2]}
+   :effects #{[:armor 2] [:fire -2]}
    :traits #{}
    :description "Mage gains **Armor +2** and **Flame -2** trait."
    :image "MW1Q06.jpg"}
   {:name "Elemental Cloak"
    :subtypes #{}
    :casting-cost 6
-   :school [:flame 1]
+   :school [:fire 1]
    :slots #{:cloak}
-   :effects #{[:armor 2] [:flame -2]}
+   :effects #{[:armor 2] [:fire -2]}
    :traits #{}
    :description "Mage gains **Armor +2** and **Flame -2** trait."
    :image "MW1Q07.jpg"}
@@ -84,7 +84,7 @@
    :subtypes #{}
    :secondary-targets #{:spell}
    :casting-cost 5
-   :school #{[:earth 2] [:flame 2] [:air 2] [:water 2]}
+   :school #{[:earth 2] [:fire 2] [:air 2] [:water 2]}
    :slots #{:weapon :shield}
    :effects #{}
    :traits #{:spellbind}
@@ -103,9 +103,9 @@
   {:name "Fireshaper Ring"
    :subtypes #{}
    :casting-cost 3
-   :school [:flame 1]
+   :school [:fire 1]
    :slots #{:ring}
-   :effects #{[:melee 1 :flame] [:ranged 1 :flame]}
+   :effects #{[:melee 1 :fire] [:ranged 1 :fire]}
    :traits #{}
    :description "Mage gains the **Melee +1** and **Ranged +1** traits for all attacks he makes that deal *flame* damage."
    :image "MW1Q10.jpg"}
@@ -147,12 +147,12 @@
   {:name "Lash of Hellfire"
    :subtypes #{}
    :casting-cost 8
-   :school [[:dark 1] [:flame 1]]
+   :school [[:dark 1] [:fire 1]]
    :slots #{:weapon}
    :effects #{}
    :attacks #{{:name "Searing Thrash"
                :dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 7 10] [[:burn 2] 11 12]}
                :traits #{:reach :defrost}
                :ranged-melee :melee
@@ -195,7 +195,7 @@
    :effects #{}
    :attacks #{{:name "Arcane Burst"
                :dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{}
                :traits #{:reach :ethereal}
                :ranged-melee :melee

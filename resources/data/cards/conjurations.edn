@@ -19,12 +19,12 @@
   {:name "Battle Forge"
    :subtypes #{:structure}
    :casting-cost 8
-   :school [[:war 2] [:flame 1]]
+   :school [[:war 2] [:fire 1]]
    :armor 4
    :life 6
    :channeling 1
    :effects #{}
-   :traits #{:zone-exclusive :spawnpoint [:immunity :flame] [:damage-mod :hydro 3]}
+   :traits #{:zone-exclusive :spawnpoint [:immunity :fire] [:damage-mod :hydro 3]}
    :description "During the Deployment Phase, Battle Forge may cast one equipment spell."
    :image "MW1J04.jpg"}
   {:name "Deathlock"
@@ -56,10 +56,10 @@
    :armor 3
    :life 11
    :effects #{[:melee 1]}
-   :traits #{:zone-exclusive [:immunity :flame] [:damage-mod :hydro 3] :epic :warlock-only}
+   :traits #{:zone-exclusive [:immunity :fire] [:damage-mod :hydro 3] :epic :warlock-only}
    :attacks #{{:name "Open the Gate"
                :dice 4
-               :damage-type :flame
+               :damage-type :fire
                :effects #{[[:burn 1] 5 10] [[:burn 2] 11 12]}
                :traits #{:unavoidable :defrost}
                :ranged-melee :melee
@@ -116,7 +116,7 @@
    :armor 2
    :life 6
    :effects #{[:channeling 1]}
-   :traits #{:zone-exclusive [:immunity :flame]}
+   :traits #{:zone-exclusive [:immunity :fire]}
    :description "Controller gains **Channeling +1**"
    :image "MW1J12.jpg"}
   {:name "Mana Flower"
@@ -127,7 +127,7 @@
    :armor 0
    :life 6
    :effects #{[:channeling 1]}
-   :traits #{:zone-exclusive [:regenerate 2] :living [:damage-mod :flame 2] [:immunity :hydro]}
+   :traits #{:zone-exclusive [:regenerate 2] :living [:damage-mod :fire 2] [:immunity :hydro]}
    :description "Controller gains **Channeling +1**"
    :image "MW1J13.jpg"}
   {:name "Mana Siphon"
@@ -149,7 +149,7 @@
    :armor 2
    :life 8
    :effects #{[:regenerate 2]}
-   :traits #{[:regenerate 2] :living :legendary [:damage-mod :flame 2] [:immunity :hydro]}
+   :traits #{[:regenerate 2] :living :legendary [:damage-mod :fire 2] [:immunity :hydro]}
    :description "All friendly Living creatures in Mohktari's zone gain the **Regenerate 2** trait."
    :image "MW1J15.jpg"}
   {:name "Mordok's Obelisk"
@@ -222,7 +222,7 @@
    :school [:nature 1]
    :armor 0
    :life 8
-   :traits #{:living [:immunity :hydro] [:damage-mod :flame 2]}
+   :traits #{:living [:immunity :hydro] [:damage-mod :fire 2]}
    :description "Target is **Restrained** and gains the **Unmovable** trait. Tanglevine cannot target creatures with the Flying or Uncontainable traits. **Ranged** attacks cannot target Tanglevine."
    :image "MW1J22.jpg"}
   {:name "Temple of Asyra"
