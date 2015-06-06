@@ -57,4 +57,16 @@
 (deftask write-data
   "Write data to filesystem"
   []
-  )
+  (let [dir (c/tmp-dir!)]
+    (set-env! :target-path "src/cljs/magewars_deckbuilder/data")
+    (with-pre-wrap fileset
+      (let [data {:cards (cards/cards :core)
+                  :mages mages/all}
+            out (output-files fileset)]
+        (spit (str (.getPath dir) "/all.cljs")
+              (str "(ns magewars-deckbuilder.data.all)\n\n(def data "
+                   data
+                   ")"))
+        (-> (rm fileset out)
+            (c/add-resource dir)
+            c/commit!)))))
