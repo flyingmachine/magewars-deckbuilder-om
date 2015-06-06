@@ -73,13 +73,13 @@ label:hover {
   }
 }
 
-
-
 h3 {
   background: #a61018;
   position: relative;
   color: white;
   font-weight: normal;
+  font-family: $font-header;
+  font-style: italic;
   &:after {
     display: block;
     position: absolute;
@@ -99,6 +99,8 @@ h4 {
   color: white;
   position: relative;
   font-weight: normal;
+  font-family: $font-header;
+  font-style: italic;
   &:after {
     display: block;
     position: absolute;
@@ -156,3 +158,16 @@ h4 {
 .disabled {
   opacity: 0.5;
 }
+
+.buy a {
+  background: black;
+  transition: 0.25s all;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    color: #a61018;
+  }
+}
+
+
