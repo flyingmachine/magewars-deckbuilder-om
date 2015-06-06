@@ -47,7 +47,7 @@
   "Run a restartable systemin the REPL"
   []
   (comp (environ :env {:http-port 3000})
-        (watch :verbose true)
+        (watch)
         (sass :sass-file "main.scss" :output-dir "stylesheets")
         (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
         (reload)
