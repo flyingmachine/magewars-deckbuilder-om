@@ -78,4 +78,5 @@
   (comp (sass :sass-file "main.scss" :output-dir "stylesheets")
         (add-data)
         (cljs :compiler-options {:output-to "main.js"}
-              :optimizations :advanced)))
+              :optimizations :advanced)
+        (sift :include #{#"^index.html" #"^stylesheets" #"^images" #"^main.js"})))
