@@ -45,7 +45,8 @@
     fileset))
 
 (deftask add-data
-  "Write data to filesystem"
+  "Add card data to sources so CLJS will pick it up, removing need for
+  AJAX call"
   []
   (let [dir (c/tmp-dir!)]
     (with-pre-wrap fileset
