@@ -28,6 +28,7 @@
 
 (require
  '[boot.core             :as c]
+ '[clojure.java.io       :as io]
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
@@ -43,6 +44,20 @@
     (alter-var-root #'environ.core/env merge env)
     fileset))
 
+(deftask add-data
+  "Write data to filesystem"
+  []
+  (let [dir (c/tmp-dir!)]
+    (with-pre-wrap fileset
+      (let [data {:cards (cards/cards :core)
+                  :mages mages/all}
+            file (io/file dir "magewars_deckbuilder/data/all.cljs")]
+        (io/make-parents file)
+        (spit file (str "(ns magewars-deckbuilder.data.all)\n\n(def data "
+                        data
+                        ")"))
+        (c/commit! (c/add-source fileset dir))))))
+
 (deftask dev
   "Run a restartable systemin the REPL"
   []
@@ -50,6 +65,7 @@
         (watch)
         (sass :sass-file "main.scss" :output-dir "stylesheets")
         (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
+        (add-data)
         (reload)
         (cljs :compiler-options {:output-to "main.js"}
               :source-map)
@@ -59,22 +75,6 @@
   "Build for prod"
   []
   (comp (sass :sass-file "main.scss" :output-dir "stylesheets")
+        (add-data)
         (cljs :compiler-options {:output-to "main.js"}
               :optimizations :advanced)))
-
-(deftask write-data
-  "Write data to filesystem"
-  []
-  (let [dir (c/tmp-dir!)]
-    (set-env! :target-path "src/cljs/magewars_deckbuilder/data")
-    (with-pre-wrap fileset
-      (let [data {:cards (cards/cards :core)
-                  :mages mages/all}
-            out (output-files fileset)]
-        (spit (str (.getPath dir) "/all.cljs")
-              (str "(ns magewars-deckbuilder.data.all)\n\n(def data "
-                   data
-                   ")"))
-        (-> (rm fileset out)
-            (c/add-resource dir)
-            c/commit!)))))
