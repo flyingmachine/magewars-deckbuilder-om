@@ -1,4 +1,4 @@
-(ns magewars-deckbuilder.components.helpers
+(ns magewars-spellbook.components.helpers
   (:require [om.dom :as dom :include-macros true]))
 
 (defn row

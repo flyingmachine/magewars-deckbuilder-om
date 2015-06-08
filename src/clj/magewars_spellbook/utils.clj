@@ -1,4 +1,4 @@
-(ns magewars-deckbuilder.utils
+(ns magewars-spellbook.utils
   (:require [clojure.java.io :as io]))
 
 ;; reading static card sets

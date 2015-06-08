@@ -1,5 +1,5 @@
-(ns magewars-deckbuilder.cards
-  (:require [magewars-deckbuilder.utils :refer :all]))
+(ns magewars-spellbook.cards
+  (:require [magewars-spellbook.utils :refer :all]))
 
 ;; "unpack" cards
 (def common-attributes

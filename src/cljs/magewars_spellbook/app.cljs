@@ -1,15 +1,15 @@
-(ns magewars-deckbuilder.app
+(ns magewars-spellbook.app
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [om-sync.core :refer [om-sync]]
             [om-sync.util :refer [tx-tag edn-xhr]]
             [cljs.core.async :as async :refer [chan]]
-            [magewars-deckbuilder.filtering :as f]
-            [magewars-deckbuilder.data.all :refer [data]]
-            [magewars-deckbuilder.components.card-list :as cl]
-            [magewars-deckbuilder.components.filter-selection :as fs]
-            [magewars-deckbuilder.components.selected-card :as sc]
-            [magewars-deckbuilder.components.mage :as m]))
+            [magewars-spellbook.filtering :as f]
+            [magewars-spellbook.data.all :refer [data]]
+            [magewars-spellbook.components.card-list :as cl]
+            [magewars-spellbook.components.filter-selection :as fs]
+            [magewars-spellbook.components.selected-card :as sc]
+            [magewars-spellbook.components.mage :as m]))
 
 (enable-console-print!)
 
@@ -22,7 +22,7 @@
            :cards cards
            :cards-by-name (into {} (map (juxt :name identity) cards))
            :cindex cindex
-           :deck {:title "Deck"
+           :deck {:title "Spellbook"
                   :counts {}}
            :pool {:title "Pool"
                   :counts (into {} (map (juxt :name :count) cards))}

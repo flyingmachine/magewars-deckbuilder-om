@@ -1,5 +1,5 @@
-(ns magewars-deckbuilder.filtering
-  (:require [magewars-deckbuilder.utils :refer [mapval]]
+(ns magewars-spellbook.filtering
+  (:require [magewars-spellbook.utils :refer [mapval]]
             [clojure.set :as s]))
 
 ;; TODO put this in cards, consolidate filter-options to go in cards

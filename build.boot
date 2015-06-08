@@ -33,11 +33,11 @@
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
  '[reloaded.repl         :refer [init start stop go reset]]
- '[magewars-deckbuilder.systems :refer [dev-system]]
  '[mathias.boot-sassc    :refer [sass]]
  '[system.boot           :refer [system]]
- '[magewars-deckbuilder.cards   :as cards]
- '[magewars-deckbuilder.mages   :as mages])
+ '[magewars-spellbook.systems :refer [dev-system]]
+ '[magewars-spellbook.cards   :as cards]
+ '[magewars-spellbook.mages   :as mages])
 
 (deftask environ [e env FOO=BAR {kw edn} "The environment map"]
   (with-pre-wrap fileset
@@ -52,9 +52,9 @@
     (with-pre-wrap fileset
       (let [data {:cards (cards/cards :core)
                   :mages mages/all}
-            file (io/file dir "magewars_deckbuilder/data/all.cljs")]
+            file (io/file dir "magewars_spellbook/data/all.cljs")]
         (io/make-parents file)
-        (spit file (str "(ns magewars-deckbuilder.data.all)\n\n(def data "
+        (spit file (str "(ns magewars-spellbook.data.all)\n\n(def data "
                         data
                         ")"))
         (c/commit! (c/add-source fileset dir))))))

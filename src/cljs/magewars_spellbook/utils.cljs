@@ -1,4 +1,4 @@
-(ns magewars-deckbuilder.utils)
+(ns magewars-spellbook.utils)
 
 (defn mapval
   [f m]

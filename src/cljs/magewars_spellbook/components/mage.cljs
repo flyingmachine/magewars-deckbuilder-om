@@ -1,7 +1,7 @@
-(ns magewars-deckbuilder.components.mage
+(ns magewars-spellbook.components.mage
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
-            [magewars-deckbuilder.components.helpers :as h]
+            [magewars-spellbook.components.helpers :as h]
             [clojure.string :as s]))
 
 (def elements [:fire :earth :air :water])
@@ -110,7 +110,7 @@
           (dom/div nil
             (dom/button #js {:onClick #(load-default selected-mage deck pool)
                              :disabled (not selected-mage)}
-                        (str "Load default " (:class selected-mage) " deck"))))))))
+                        (str "Load default " (:class selected-mage) " spellbook"))))))))
 
 (defn download-view [mage element deck]
   (println deck)

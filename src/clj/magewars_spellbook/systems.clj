@@ -1,6 +1,6 @@
-(ns magewars-deckbuilder.systems
+(ns magewars-spellbook.systems
   (:require 
-   [magewars-deckbuilder.handler :refer [app]]
+   [magewars-spellbook.handler :refer [app]]
    [environ.core :refer [env]]
    [system.core :refer [defsystem]]
    (system.components 

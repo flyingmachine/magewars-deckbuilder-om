@@ -1,7 +1,7 @@
-(ns magewars-deckbuilder.components.filter-selection
+(ns magewars-spellbook.components.filter-selection
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [cljs.core.async :as async :refer [put! chan <!]]
-            [magewars-deckbuilder.filtering :as f]
+            [magewars-spellbook.filtering :as f]
             [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]))
 

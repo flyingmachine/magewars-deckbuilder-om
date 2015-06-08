@@ -1,5 +1,5 @@
-(ns magewars-deckbuilder.components.card-list
-  (:require [magewars-deckbuilder.filtering :as f]
+(ns magewars-spellbook.components.card-list
+  (:require [magewars-spellbook.filtering :as f]
             [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]))
 

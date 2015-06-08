@@ -1,12 +1,12 @@
-(ns magewars-deckbuilder.handler
+(ns magewars-spellbook.handler
   (:require [clojure.java.io :as io]
             [clojure.edn :as edn]
             [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.response :as resp]
-            [magewars-deckbuilder.cards :as cards]
-            [magewars-deckbuilder.mages :as mages]))
+            [magewars-spellbook.cards :as cards]
+            [magewars-spellbook.mages :as mages]))
 
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
